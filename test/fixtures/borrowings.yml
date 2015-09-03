@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  borrower_id: 
+  borrowed_item_id: 
+
+two:
+  borrower_id: 
+  borrowed_item_id: 

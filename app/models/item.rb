@@ -7,4 +7,7 @@ class Item < ActiveRecord::Base
   validates :start_day, presence: true
   validates :end_day, presence: true
   
+  has_one :borrower_user, class_name: "Borrowing", foreign_key: "borrowed_item", dependent: :destroy
+  has_one :borrowing_user, through: :borrower_user, source: :borrower
+  
 end

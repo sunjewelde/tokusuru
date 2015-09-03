@@ -8,4 +8,6 @@ class User < ActiveRecord::Base
     has_secure_password
     
     has_many :items
+    has_many :borrowed_items, class_name: "Borrowing", foreign_key: "borrower_id", dependent: :destroy
+    has_many :borrowing_items, through: :borrowed_items, source: :borrowed_item
 end
