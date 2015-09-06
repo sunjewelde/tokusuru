@@ -1,4 +1,9 @@
+require 'carrierwave/orm/activerecord'
+#require 'file_size_validator'
+
 class Item < ActiveRecord::Base
+  mount_uploader :avatar, AvatarUploader
+  #mount_uploaders :avatars, AvatarUploader
   belongs_to :user
   validates :user_id, presence: true
   validates :content, length: { maximum: 250 }
@@ -9,5 +14,7 @@ class Item < ActiveRecord::Base
   
   has_one :borrower_user, class_name: "Borrowing", foreign_key: "borrowed_item", dependent: :destroy
   has_one :borrowing_user, through: :borrower_user, source: :borrower
+  
+  
   
 end

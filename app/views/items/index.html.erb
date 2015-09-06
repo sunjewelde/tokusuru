@@ -1,0 +1,16 @@
+<% provide(:title, 'All items') %>
+<h1>貸したいアイテム一覧</h1>
+<div class="row">
+    <div>
+        <ul class="col-md-6 col-md-offset-3 media-list">
+            <% @items.each do | item | %>
+                <li class="media">
+                 <span class="title">タイトル: <%= link_to item.title, item_path(item.id) %></span>
+                 <span class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></span>
+                 <%= link_to "借りたい", item_path(item.id), class: "btn btn-large btn-primary" %>
+                 <hr/>
+                </li>
+            <% end %>
+        </ul>
+    </div>
+</div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150903194728) do
+ActiveRecord::Schema.define(version: 20150904130408) do
 
   create_table "borrowings", force: :cascade do |t|
     t.integer  "borrower_id"
@@ -24,24 +24,8 @@ ActiveRecord::Schema.define(version: 20150903194728) do
   add_index "borrowings", ["borrowed_item_id"], name: "index_borrowings_on_borrowed_item_id"
   add_index "borrowings", ["borrower_id"], name: "index_borrowings_on_borrower_id"
 
-  create_table "items", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "title"
-    t.string   "description"
-    t.string   "category"
-    t.string   "detail_page_url"
-    t.string   "small_image"
-    t.string   "medium_image"
-    t.string   "large_image"
-    t.text     "content"
-    t.date     "start_day"
-    t.date     "end_day"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
-  add_index "items", ["user_id", "created_at"], name: "index_items_on_user_id_and_created_at"
-  add_index "items", ["user_id"], name: "index_items_on_user_id"
+# Could not dump table "items" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

@@ -1,0 +1,23 @@
+<%= form_for(@item) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+
+    <%= f.label :title, placeholder: "タイトル" %>
+      <%= f.text_field :title %>
+
+      <%= f.label :category, placeholder: "カテゴリー" %>
+      <%= f.text_field :category %>
+
+      <%= f.label :start_day, placeholder: "利用可能開始日" %>
+      <%= f.date_field :start_day %>
+
+      <%= f.label :end_day, placeholder: "利用可能終了日" %>
+      <%= f.date_field :end_day %>
+
+      <%= f.label :content, placeholder: "その他説明" %>
+      <%= f.text_area :content %>
+
+      <%= f.submit "アイテムを登録", class: "btn btn-large btn-primary" %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>

@@ -1,0 +1,16 @@
+<% provide(:title, "Item details") %>
+<h1>アイテム詳細情報</h1>
+
+
+<h2>
+    <%= gravatar_for @user %>
+    <span>ユーザー名: <%= @user.name %></span>
+</h2>
+
+<div>
+  <%= link_to gravatar_for(@item.user, size: 30), @item.user %>
+  <span class="user"><%= link_to @item.user.name, @item.user %></span>
+  <span class="title">タイトル: <%= @item.title %></span>
+  <span class="title">有効期間: <%= @item.start_day %> 〜 <%= @item.end_day %></span>
+  <%= link_to "予約", "#", class: "btn btn-large btn-primary" %>
+</div>
