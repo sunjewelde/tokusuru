@@ -1,12 +1,12 @@
 <li id="item-<%= item.id %>">
   <%= link_to gravatar_for(item.user, size: 50), item.user %>
-  <span class="user"><%= link_to item.user.name, item.user %></span>
+  <span class="user"><%#= link_to item.user.name, item.user %></span>
   <span class="title">タイトル: <%= item.title %></span>
   <span class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></span>
   <span class="timestamp">
     <%#= time_ago_in_words(item.created_at) %>
     <% if current_user == item.user %>
-      <%= link_to "編集", edit_item_path(item)%>
+      <%= link_to "編集", edit_item_path(item)%> | 
       <%= link_to "削除", item, method: :delete,
                                        data: { confirm: "本当に削除してよろしいですか?" } %>
     <% end %>

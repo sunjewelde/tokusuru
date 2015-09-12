@@ -26,6 +26,10 @@ class ItemsController < ApplicationController
     end
   end
   
+  # def reserve
+  #   @item = Item.find_by(id: params[:id])
+  # end
+  
   def destroy
     @item = current_user.items.find_by(id: params[:id])
     return redirect_to root_url if @item.nil?
@@ -67,11 +71,11 @@ class ItemsController < ApplicationController
                                  :small_image, 
                                  :medium_image, 
                                  :large_image,
-                                 {avatars: []})
+                                 {avatar: []})
   end
   
   def update_params
-  params.require(:item).permit(:title, :description, :category, :start_day, :end_day, :content, {avatars: []})
+  params.require(:item).permit(:title, :description, :category, :start_day, :end_day, :content, {avatar: []})
   end
   
 end

@@ -1,10 +1,11 @@
 <% provide(:title, "Item details") %>
+
 <h1>アイテム詳細情報</h1>
 
 
 <h2>
     <%= gravatar_for @user %>
-    <span>ユーザー名: <%= @user.name %></span>
+    <span>所有者: <%= @user.name %></span>
 </h2>
 
 <div>
@@ -12,5 +13,36 @@
   <span class="user"><%= link_to @item.user.name, @item.user %></span>
   <span class="title">タイトル: <%= @item.title %></span>
   <span class="title">有効期間: <%= @item.start_day %> 〜 <%= @item.end_day %></span>
-  <%= link_to "予約", "#", class: "btn btn-large btn-primary" %>
+  <%#= link_to "予約", borrowings_path(borrowed_item: @item.id), 
+                          :class => "btn btn-large btn-primary",
+                          :remote => true,
+                          :method => :post %>
+ 
+ <%# @borrowing = Borrowing.new %>
+ <%#= form_for(@borrowing) do |f| %>
+ <%#= f.hidden_field :borrower, :value => current_user.id %>
+ <%#= f.text_field :borrower, :value => current_user.id %>
+ <%#= f.hidden_field :borrowed_item, :value => @item.id %>
+ <%#= f.text_field :borrowed_item, :value => @item.id %>
+ <%#= f.submit "アイテムを予約", class: "btn btn-large btn-primary" %>
+ <%# end %>
+ 
+ <%#= form_for(current_user.borrowed_items.build, remote: true) do |f| %>
+ <%#= hidden_field_tag :borrower, current_user.id %>
+ <%#= hidden_field_tag :borrowed_item, @item.id %>
+ <%#= f.submit "アイテムを予約", class: "btn btn-primary" %>
+ <%# end %>
+  
+  <% if current_user.borrowing?(@item) %>
+    <%= form_for(current_user.borrowed_items.find_by(borrowed_item_id: @item.id),
+             html: { method: :delete }) do |f| %>
+    <%= f.submit "予約解除", class: "btn" %>
+    <% end %>
+  <% else %>
+    <%= form_for(current_user.borrowed_items.build) do |f| %>
+      <%= hidden_field_tag :borrowed_item, @item.id %>
+      <%= f.submit "アイテムを予約", class: "btn btn-primary" %>
+    <% end %>
+  <% end %>
+
 </div>

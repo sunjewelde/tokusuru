@@ -5,11 +5,20 @@
         <ul class="col-md-6 col-md-offset-3 media-list">
             <% @items.each do | item | %>
                 <li class="media">
-                 <span class="title">タイトル: <%= link_to item.title, item_path(item.id) %></span>
-                 <span class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></span>
-                 <%= link_to "借りたい", item_path(item.id), class: "btn btn-large btn-primary" %>
-                 <hr/>
-                </li>
+                  <% if current_user.items.include?(item) %>
+                  <% #ユーザーの出品したものだった場合の処理。現在は非表示にしています。 %>
+                  <span class="title">タイトル: <%= link_to item.title, item_path(item.id) %></span></br>
+                  <span class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></span></br>
+                  <strong class="user_title">貸し出し中のアイテム</strong>
+                  <hr/>
+                <% else %>
+                  <li class="media">
+                    <span class="title">タイトル: <%= link_to item.title, item_path(item.id) %></span></br>
+                    <span class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></span></br>
+                    <%= link_to "借りたい", item_path(item.id), class: "btn btn-large btn-primary" %>
+                  <hr/>
+                 </li>
+                <% end %>
             <% end %>
         </ul>
     </div>

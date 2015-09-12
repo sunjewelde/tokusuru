@@ -27,7 +27,7 @@ gem 'bootstrap-sass'
 
 gem 'carrierwave'
 gem 'cloudinary'
-#gem 'rmagick'
+# gem 'rmagick'
 
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'

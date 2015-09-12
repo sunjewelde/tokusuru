@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   # get 'sessions/new'
 
+  # get 'borrowings/cretae' => "borrowings#create"
+
   root to: 'top_pages#home'
   get 'signup',  to: 'users#new'
   get    'login'   => 'sessions#new'
