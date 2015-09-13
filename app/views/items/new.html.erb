@@ -20,8 +20,30 @@
       <%= f.label :アイテム紹介 %>
       <%= f.text_area :content %>
       
-      <%= f.label :アイテム画像 %>
-      <%= f.file_field :avatar %>
+  <!-- 追加箇所 開始 -->
+      <div class="field">
+        <%# if f.avatar? %>
+          <!--<div class="thumbnail">-->
+            <%#= image_tag f.avatar.url %>
+          <!--</div>-->
+        <%# end %><br>
+        <%= f.label :アイテム画像 %><br>
+        <%= f.file_field :avatar %>
+        <%= f.hidden_field :avatar_cache %>
+      </div>
+      <div class="field">
+        <!-- 既存レコード(DBに保存されている)かつ、画像が存在する場合 -->
+        <%# if f.persisted? && @avatar.avatar? %>
+          <!--<label>-->
+            <%#= f.check_box :remove_avator %>
+          <!--  画像を削除-->
+          <!--</label>-->
+        <%# end %>
+      </div>
+  <!-- 追加箇所 終了 -->
+      
+      <%#= f.label :アイテム画像 %>
+      <%#= f.file_field :avatar %>
       
       <%#= form.file_field :avatars, multiple: true %>
 
@@ -29,3 +51,4 @@
     <% end %>
   </div>
 </div>
+

@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
     @item = Item.find_by(id: params[:id])
     user_id = @item.user_id
     @user = User.find(user_id)
+    @item_image = @item.avatar_id
   end
   
   def new
@@ -71,11 +72,12 @@ class ItemsController < ApplicationController
                                  :small_image, 
                                  :medium_image, 
                                  :large_image,
+                                 :avatar, :avatar_cache, :remove_avator,
                                  {avatar: []})
   end
   
   def update_params
-  params.require(:item).permit(:title, :description, :category, :start_day, :end_day, :content, {avatar: []})
+  params.require(:item).permit(:title, :description, :category, :start_day, :end_day, :content, :avatar, :avatar_cache, :remove_avator, {avatar: []})
   end
   
 end

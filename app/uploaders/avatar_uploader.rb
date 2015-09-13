@@ -3,8 +3,44 @@
 class AvatarUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
+  include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
+
+#-----------追加------------------------
+ # 画像の上限を700pxにする
+  process :resize_to_limit => [700, 700]
+
+  # 保存形式をJPGにする
+  process :convert => 'jpg'
+
+  # サムネイルを生成する設定
+  version :thumb do
+    process :resize_to_limit => [200, 200]
+  end
+
+  # jpg,jpeg,gif,pngしか受け付けない
+  def extension_white_list
+    %w(jpg jpeg gif png)
+  end
+
+ # 拡張子が同じでないとGIFをJPGとかにコンバートできないので、ファイル名を変更
+  def filename
+    super.chomp(File.extname(super)) + '.jpg' if original_filename.present?
+  end
+  
+# ファイル名は original.jpg で保存 (jpeg変換しているので拡張子は固定)
+  # def filename
+  #   "original.jpg" if original_filename
+  # end
+
+ # ファイル名は日本語が入ってくると嫌なので、下記のようにしてみてもいい。
+ # 日付(20131001.jpgみたいなファイル名)で保存する
+  def filename
+    time = Time.now
+    name = time.strftime('%Y%m%d%H%M%S') + '.jpg'
+    name.downcase
+  end
+#-----------追加終わり
 
   # Choose what kind of storage to use for this uploader:
   #storage :file
@@ -19,7 +55,12 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    # 'public/uploads/item/avatar'
   end
+  
+  # def cache_dir
+  #   'tmp/cache'
+  # end
 
   def public_id
     model.id

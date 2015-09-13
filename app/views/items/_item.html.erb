@@ -1,6 +1,15 @@
 <li id="item-<%= item.id %>">
-  <%= link_to gravatar_for(item.user, size: 50), item.user %>
+  <%#= link_to gravatar_for(item.user, size: 50), item.user %>
   <span class="user"><%#= link_to item.user.name, item.user %></span>
+  <span class="user_item_img"><%#= item.avators %></span>
+  <div class="img-wrap">
+            <% if item.avatar? %>
+            <%= image_tag item.avatar.thumb.url %>
+            <% else %>
+            <span>No image</span>
+            <% end %>
+  </div>
+          
   <span class="title">タイトル: <%= item.title %></span>
   <span class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></span>
   <span class="timestamp">
