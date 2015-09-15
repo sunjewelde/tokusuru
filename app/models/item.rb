@@ -13,10 +13,10 @@ class Item < ActiveRecord::Base
   validates :end_day, presence: true
   
   has_one :borrower_user, class_name: "Borrowing", foreign_key: "borrowed_item_id", dependent: :destroy
-  has_one :borrowing_user, through: :borower_user, source: :user
+  # has_one :borrowing_user, through: :borower_user, source: :user
   
   # has_one :borrower_user, class_name: "Borrowing", foreign_key: "borrowed_item_id", dependent: :destroy
-  # has_one :borrowing_user, through: :borower_user, source: :borrower
+  has_one :borrowing_user, through: :borower_user, source: :borrower
   
     # アイテムを貸し出す
   # def lend(item)

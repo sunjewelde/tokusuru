@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
     @item = current_user.items.build(item_params)
     if @item.save
       flash[:success] = "アイテムは保存されました。"
-      redirect_to root_url
+      redirect_to current_user
     else
       render 'top_pages/home'
     end
@@ -33,7 +33,7 @@ class ItemsController < ApplicationController
   
   def destroy
     @item = current_user.items.find_by(id: params[:id])
-    return redirect_to root_url if @item.nil?
+    return redirect_to current_user_path if @item.nil?
     @item.destroy
     flash[:success] = "アイテムは削除されました。"
     redirect_to request.referrer || root_url
@@ -43,7 +43,7 @@ class ItemsController < ApplicationController
   def update
     @item = current_user.items.find_by(id: params[:id])
     if @item.update(update_params)
-      redirect_to root_path , notice: 'アイテム情報を編集しました。'
+      redirect_to current_user , notice: 'アイテム情報を編集しました。'
     else
       render 'edit'
     end
