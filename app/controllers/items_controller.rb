@@ -72,12 +72,11 @@ class ItemsController < ApplicationController
                                  :small_image, 
                                  :medium_image, 
                                  :large_image,
-                                 :avatar,
-                                 {avatar: []})
+                                 :avatar)
   end
   
   def update_params
-  params.require(:item).permit(:title, :description, :category, :start_day, :end_day, :content, :avatar, {avatar: []})
+  params.require(:item).permit(:title, :description, :category, :start_day, :end_day, :content, :avatar)
   end
   
 end
