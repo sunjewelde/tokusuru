@@ -5,7 +5,7 @@
 /* universal */
 
 body {
-  padding-top: 60px;
+  padding-top: 50px;
 }
 
 section {
@@ -156,4 +156,41 @@ span.picture {
 
 .user_title {
   color: red;
+}
+
+
+.user-box1 {
+  background-image: image-url("main.png") no-repeat top center fixed;
+　background-size: 100%;
+}
+
+
+.jumbotron {
+  background-image: image-url("main.png");
+  height: 480px;
+  color: white;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 0 !important;
+  font-weight: bold;
+  text-align: center;
+  margin-top: -20px;
+  padding: 50px;
+  p { 
+  color: white;
+  }
+}
+
+.user-navbar{
+  font-size: 0;
+   .user-nav-list{
+      background-color: #fff;
+      display: inline-block;
+      font-size: 14px;
+      width: 20%;
+    }
+}
+
+.user_margin1{
+  margin-top: 60px;
 }
