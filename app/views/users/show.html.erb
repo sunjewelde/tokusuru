@@ -6,12 +6,13 @@
         <%= @user.name %>
       </h1>
     </section>
-    <div>
-      <p><%= link_to "現在借りているアイテムはこちら", "#" %></p>
-    </div>
+   
   </aside>
   <div class="col-md-8">
-    <p><%= link_to "新規アイテムを登録", new_item_path, class: "btn btn-primary" %></p>
+    <p><%= link_to "新規アイテムを登録", new_item_path, class: "btn btn-primary user_btn1" %></p>
+     <div>
+      <p><%= link_to "現在借りているアイテムはこちら", "#" %></p>
+    </div>
     <% if @user.items.any? %>
       <h3>掲載アイテム一覧 (個数: <%= @user.items.count %>)</h3>
       <ol class="items">
