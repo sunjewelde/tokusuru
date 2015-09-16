@@ -18,6 +18,14 @@ class Item < ActiveRecord::Base
   # has_one :borrower_user, class_name: "Borrowing", foreign_key: "borrowed_item_id", dependent: :destroy
   has_one :borrowing_user, through: :borower_user, source: :borrower
   
+  def self.search(search) #self.でクラスメソッドとしている
+    if search # Controllerから渡されたパラメータが!= nilの場合は、titleカラムを部分一致検索
+      Item.where(['title LIKE ?', "%#{search}%"])
+    else
+      Item.all #全て表示。
+    end
+  end
+  
     # アイテムを貸し出す
   # def lend(item)
   #   borrower_user.create(borrower_id: current_user.id)

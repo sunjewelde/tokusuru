@@ -10,7 +10,17 @@
 
 <div>
   <%#= link_to gravatar_for(@item.user, size: 30), @item.user %>
-  <div><%= image_tag(@item.avatar.thumb.url, class: "img-thumbnail") if @item.thumb.avatar %></div>
+  <div>
+      <p>
+          <strong>Image:</strong>
+          <% if @item.avatar? %>
+            <div class="thumbnail">
+              <%= image_tag @item.avatar.url %>
+            </div>
+          <% end %>
+      </p>
+  </div>
+                   
   <span class="user"><%= link_to @item.user.name, @item.user %></span>
   <span class="title">タイトル: <%= @item.title %></span>
   <span class="title">有効期間: <%= @item.start_day %> 〜 <%= @item.end_day %></span>

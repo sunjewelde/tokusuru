@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   # get 'sessions/new'
 
   # get 'borrowings/cretae' => "borrowings#create"
+  
+  get 'items/find_borrowing' => "items#find_borrowing"
 
   root to: 'top_pages#home'
   get 'signup',  to: 'users#new'

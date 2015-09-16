@@ -1,10 +1,10 @@
  <!--<div class="navbar navbar-inverse">-->
-    <%= render 'layouts/mainnav' %>
+    
 <!--</div>-->
 
 <div class="jumbotron">
+    <%= render 'layouts/mainnav' %>
     <div class="container">
-       
         <h1>あたらしいリサイクルのかたち</h1>
         <h3 class="user_margin2">賢くモノを活用しよう</h3>
         <p class="user_margin1"><%= link_to "ご利用方法", '#', class: "btn btn-danger btn btn-primary btn-lg", type: "button"  %></p>
@@ -15,97 +15,23 @@
     <div class="container">
      <!--<div class="container">-->
         <div class="row">
-            <div class="col-lg-6">
-                <p>モノを掲載</p>
-                <P>貸したい</P>
-                <%= %>
+            <div class="col-lg-6 col-sm-6 user_category_list img-responsive">
+                <h3>モノを掲載</h3>
+                <div class="user_bg_img1">
+                    <P>貸したい</P>
+                </div>
             </div>
-            <div class="col-lg-6">
-                <p>モノを探す</p>
-                <p>借りたい</p>
-                <%= %>
+            <div class="col-lg-6 col-sm-6 user_category_list img-responsive">
+                <h3>モノを探す</h3>
+                <div class="user_bg_img2">
+                    <p>借りたい</p>
+                </div>
             </div>
         </div>
      <!--</div>-->
     
+    <%= render 'layouts/categorylist' %>
   
-     <!--<div class="container">-->
-       <div id="category_list1" class="row">
-            <div class="col-lg-3 col-sm-6 col-md-4">
-                <div class="img-rounded user_category_list">
-                    <img src="<%= asset_path "category1.jpg" %>" />
-                </div>
-                <div class="caption user_category_list">
-                    <p><a href="#">家電、カメラ、AV機器</a></p>
-                </div>
-            </div>
-            
-             <div class="col-lg-3 col-sm-6 col-md-4">
-                <div class="img-rounded user_category_list">
-                    <img src="<%= asset_path "category2.jpg" %>" />
-                </div>
-                <div class="caption user_category_list">
-                    <p><a href="#">パソコン・オフィス用品</a></p>
-                </div>
-            </div>
-            
-            <div class="col-lg-3 col-sm-6 col-md-4">
-                <div class="img-rounded user_category_list">
-                    <img src="<%= asset_path "category3.jpg" %>" />
-                </div>
-                <div class="caption user_category_list">
-                    <p><a href="#">ホーム＆キッチン・ペット・DIY</a></p>
-                </div>
-            </div>
-            
-            <div class="col-lg-3 col-sm-6 col-md-4">
-                <div class="img-rounded user_category_list">
-                    <img src="<%= asset_path "category4.jpg" %>" />
-                </div>
-                <div class="caption user_category_list">
-                    <p><a href="#">ヘルス＆ビューティー</a></p>
-                </div>
-            </div>
-       </div>
-       
-       <div id="category_list2" class="row user_padding1">
-            <div class="col-lg-3 col-sm-6 col-md-4">
-                <div class="img-rounded user_category_list">
-                    <img src="<%= asset_path "category5.jpg" %>" />
-                </div>
-                <div class="caption user_category_list">
-                    <p><a href="#">家電、カメラ、AV機器</a></p>
-                </div>
-            </div>
-            
-             <div class="col-lg-3 col-sm-6 col-md-4">
-                <div class="img-rounded user_category_list">
-                    <img src="<%= asset_path "category6.jpg" %>" />
-                </div>
-                <div class="caption user_category_list">
-                    <p><a href="#">パソコン・オフィス用品</a></p>
-                </div>
-            </div>
-            
-            <div class="col-lg-3 col-sm-6 col-md-4">
-                <div class="img-rounded user_category_list">
-                    <img src="<%= asset_path "category7.jpg" %>" />
-                </div>
-                <div class="caption user_category_list">
-                    <p><a href="#">ホーム＆キッチン・ペット・DIY</a></p>
-                </div>
-            </div>
-            
-            <div class="col-lg-3 col-sm-6 col-md-4">
-                <div class="img-rounded user_category_list">
-                    <img src="<%= asset_path "category8.jpg" %>" />
-                </div>
-                <div class="caption user_category_list">
-                    <p><a href="#">ヘルス＆ビューティー</a></p>
-                </div>
-            </div>
-       </div>
-      <!--</div> -->
     </div>
 
 

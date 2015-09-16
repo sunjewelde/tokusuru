@@ -166,8 +166,8 @@ span.picture {
 
 
 .jumbotron {
-  background-image: image-url("main.png");
-  height: 480px;
+  background-image: image-url("main2.jpg");
+  width: 100%;
   color: white;
   background-repeat: no-repeat;
   background-size: cover;
@@ -209,4 +209,30 @@ span.picture {
 
 .user_padding1{
   padding-top: 20px;
+}
+
+.user_bg_img1{
+  background-image: image-url("borrow.jpg");
+  color: white;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 0 !important;
+  font-weight: bold;
+  font-size: 2em;
+  text-align: center;
+  padding: 60px;
+  margin-bottom: 30px;
+}
+
+.user_bg_img2{
+  background-image: image-url("lend.jpg");
+  color: white;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 0 !important;
+  font-weight: bold;
+  font-size: 2em;
+  text-align: center;
+  padding: 60px;
+  margin-bottom: 30px;
 }

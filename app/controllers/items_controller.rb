@@ -5,12 +5,19 @@ class ItemsController < ApplicationController
     # itemを全て取得する。
     @items = Item.all
   end
+
+  def find_borrowing
+  end
+  
+  def found_borrowing
+     @items = Item.search(params[:search])
+  end
   
   def show
     @item = Item.find_by(id: params[:id])
     user_id = @item.user_id
     @user = User.find(user_id)
-    @item_image = @item.avatar_id
+    # @item_image = @item.avatar_id
   end
   
   def new
@@ -54,6 +61,7 @@ class ItemsController < ApplicationController
     # @item = Item.find(params[:id])
   end
   
+
 
   
   # def image_upload

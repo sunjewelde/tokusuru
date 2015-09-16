@@ -10,7 +10,7 @@
                       <strong>Image:</strong>
                       <% if item.avatar? %>
                         <div class="thumbnail">
-                          <%= image_tag item.avatar.url %>
+                          <%= image_tag item.avatar.thumb.url %>
                         </div>
                       <% end %>
                   </p>
@@ -24,7 +24,7 @@
                       <strong>Image:</strong>
                       <% if item.avatar? %>
                         <div class="thumbnail">
-                          <%= image_tag item.avatar.url %>
+                          <%= image_tag item.avatar.thumb.url %>
                         </div>
                       <% end %>
                     </p>
