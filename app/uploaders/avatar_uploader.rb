@@ -46,7 +46,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   #storage :file
   # storage :fog
   if Rails.env.production?
-    include Cloudinary: :CarrierWave
+    include Cloudinary::CarrierWave
   else
     storage :file
   end
@@ -63,7 +63,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # end
 
   def public_id
-    model.id
+    item.id
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
