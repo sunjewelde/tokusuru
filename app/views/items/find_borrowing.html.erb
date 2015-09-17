@@ -1,0 +1,13 @@
+<h1>借りたいアイテムを探す</h1>
+<div class="container">
+    <p>
+        <%= form_tag items_path, :method => 'get' do %> 
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "探す", :title => nil %>
+        <% end %>
+    </p>
+</div>
+
+<%= render 'layouts/categorylist' %>
+
+<%= render 'layouts/footer' %>
