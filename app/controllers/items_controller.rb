@@ -4,12 +4,13 @@ class ItemsController < ApplicationController
   def index
     # itemを全て取得する。
     @items = Item.all
+    # @items = Item.search(params[:search])
   end
 
   def find_borrowing
   end
   
-  def found_borrowing
+  def found_item
      @items = Item.search(params[:search])
   end
   
