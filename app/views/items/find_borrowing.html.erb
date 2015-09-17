@@ -2,8 +2,12 @@
 <div class="container">
         <p>
             <%= form_tag items_found_item_path, :method => 'get' do %> 
-            <%#= label_tag(:title, "Search for:") %>
+            <%= label_tag(:search, "アイテム名") %>
             <%= text_field_tag :search, params[:search] %>
+            <%= label_tag(:start_day, "利用開始日") %>
+            <%= date_field_tag :start_day %>
+            <%= label_tag(:end_day, "利用終了日") %>
+            <%= date_field_tag :end_day %>
             <%#= submit_tag "探す", :title => nil %>
             <%= submit_tag "探す" %>
             <% end %>

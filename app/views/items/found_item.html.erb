@@ -1,0 +1,40 @@
+<% provide(:title, 'All items') %>
+<h1>見つけたアイテム</h1>
+<div class="row">
+    <div>
+        <ul class="col-md-6 col-md-offset-3 media-list">
+            <% @items.each do | item | %>
+                <li class="media">
+                  <% if current_user.items.include?(item) %>
+                  <p>
+                      <strong>Image:</strong>
+                      <% if item.avatar? %>
+                        <div class="thumbnail">
+                          <%= image_tag item.avatar.thumb.url %>
+                        </div>
+                      <% end %>
+                  </p>
+                  <span class="title">タイトル: <%= link_to item.title, item_path(item.id) %></span></br>
+                  <span class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></span></br>
+                  <strong class="user_title">自分のアイテム</strong>
+                  <hr/>
+                <% else %>
+                  <li class="media">
+                     <p>
+                      <strong>Image:</strong>
+                      <% if item.avatar? %>
+                        <div class="thumbnail">
+                          <%= image_tag item.avatar.thumb.url %>
+                        </div>
+                      <% end %>
+                    </p>
+                    <span class="title">タイトル: <%= link_to item.title, item_path(item.id) %></span></br>
+                    <span class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></span></br>
+                    <%= link_to "借りたい", item_path(item.id), class: "btn btn-large btn-primary" %>
+                  <hr/>
+                 </li>
+                <% end %>
+            <% end %>
+        </ul>
+    </div>
+</div>

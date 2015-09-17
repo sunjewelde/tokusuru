@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :logged_in_user, only: [:create]
+  before_action :logged_in_user, only: [:create, :edit, :update]
   
   def index
     # itemを全て取得する。
@@ -63,7 +63,12 @@ class ItemsController < ApplicationController
   end
   
 
-
+  # def logged_in_user
+  #   unless logged_in?
+  #     flash[:danger] = "ログインして下さい。"
+  #     redirect_to login
+  #   end
+  # end
   
   # def image_upload
   #   params.require(:item).permit(:title, :description, :category, :start_day, :end_day, :content, {avatars: []})
