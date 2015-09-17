@@ -46,7 +46,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   #storage :file
   # storage :fog
   if Rails.env.production?
-    include Cloudinary::CarrierWave
+    include Cloudinary: :CarrierWave
   else
     storage :file
   end
