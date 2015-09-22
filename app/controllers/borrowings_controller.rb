@@ -15,7 +15,10 @@ class BorrowingsController < ApplicationController
     # binding.pry
     @item = Item.find(params[:borrowed_item])
     current_user.borrow(@item)
+    # new_item=current_user.borrow(@item)
+    # @borrowing=new_item.borrower_id
     # render 'new'
+    # binding.pry
     redirect_to item_path(@item)
   end
   
@@ -24,6 +27,7 @@ class BorrowingsController < ApplicationController
   end
   
   def destroy
+    # binding.pry
     @item = current_user.borrowed_items.find(params[:id]).borrowed_item
     current_user.item_return(@item)
     redirect_to item_path(@item)

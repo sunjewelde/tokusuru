@@ -11,13 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150907204400) do
+ActiveRecord::Schema.define(version: 20150919223427) do
 
   create_table "borrowings", force: :cascade do |t|
     t.integer  "borrower_id"
     t.integer  "borrowed_item_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.date     "start_day"
+    t.date     "end_day"
   end
 
   add_index "borrowings", ["borrowed_item_id", "borrower_id"], name: "index_borrowings_on_borrowed_item_id_and_borrower_id", unique: true

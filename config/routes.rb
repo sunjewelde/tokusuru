@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   
   get 'items/find_borrowing' => "items#find_borrowing"
   get 'items/found_item' => "items#found_item"
+  get 'users/show_borrowing' => "users#show_borrowing"
 
   root to: 'top_pages#home'
   get 'signup',  to: 'users#new'

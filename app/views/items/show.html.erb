@@ -47,7 +47,7 @@
   <% if current_user.borrowing?(@item) %>
     <%= form_for(current_user.borrowed_items.find_by(borrowed_item_id: @item.id),
              html: { method: :delete }) do |f| %>
-    <%= f.submit "予約解除", class: "btn" %>
+    <%= f.submit "予約をキャンセル", class: "btn" %>
     <% end %>
   <% else %>
     <%= form_for(current_user.borrowed_items.build) do |f| %>

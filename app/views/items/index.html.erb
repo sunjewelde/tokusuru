@@ -4,21 +4,39 @@
       <div>
           <ul class="col-md-6 col-md-offset-3 media-list">
               <% @items.each do | item | %>
-                  <li class="media">
-                    <% if current_user.items.include?(item) %>
+                    <!--追加 -->
+                    <% if current_user.borrowing?(item) %>
+                        <p>
+                          <strong>Image:</strong>
+                          <% if item.avatar? %>
+                            <div class="thumbnail">
+                              <%= image_tag item.avatar.thumb.url %>
+                            </div>
+                          <% end %>
+                        </p>
+                      <span class="title">タイトル: <%= link_to item.title, item_path(item.id) %></span></br>
+                      <strong class="user_title">予約中</strong>
+                      <hr/>
+                    <!--追加終了-->
+
+                  
+                  <% elsif current_user.items.include?(item) %>
+                    <li class="media">
                       <p>
                         <strong>Image:</strong>
-                        <% if item.avatar? %>
+                        <%# if item.avatar? %>
                           <div class="thumbnail">
                             <%= image_tag item.avatar.thumb.url %>
                           </div>
-                        <% end %>
+                        <%# end %>
                       </p>
                     <span class="title">タイトル: <%= link_to item.title, item_path(item.id) %></span></br>
                     <span class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></span></br>
                     <strong class="user_title">自分のアイテム</strong>
                     <hr/>
-                  <% else %>
+                    </li>
+                    
+                    <% else %>
                     <li class="media">
                        <p>
                         <strong>Image:</strong>
@@ -38,3 +56,4 @@
           </ul>
       </div>
 </div>
+

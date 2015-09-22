@@ -13,10 +13,10 @@ class User < ActiveRecord::Base
     # has_many :borrowed_items, class_name: "Borrowing", foreign_key: "borrower_id", dependent: :destroy
     has_many :borrowing_items, through: :borrowed_items, source: :borrowed_item
     
-         # アイテムを借りる
+  # アイテムを借りる
    def borrow(item)
-     borrowed_items.create(borrower_id: item.id)
-    # borrowed_items.create(borrowed_item_id: item.id)
+    # borrowed_items.create(borrower_id: item.id)
+    borrowed_items.create(borrowed_item_id: item.id)
    end
   
   # アイテムを返却する

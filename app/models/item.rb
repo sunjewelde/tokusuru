@@ -26,6 +26,7 @@ class Item < ActiveRecord::Base
     end
   end
   
+  
     # アイテムを貸し出す
   # def lend(item)
   #   borrower_user.create(borrower_id: current_user.id)
