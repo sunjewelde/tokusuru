@@ -4,8 +4,6 @@ class ItemsController < ApplicationController
   def index
     # itemを全て取得する。
     @items = Item.all
-    # binding.pry
-    # @borrowings=Borrowing.all
   end
 
   def find_borrowing

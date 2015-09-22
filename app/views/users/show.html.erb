@@ -14,7 +14,7 @@
                               :remote => true,
                               :method => :delete %>
     
-    <div class="col-md-6">
+    <div class="col-md-12">
       <p><%= link_to "新規アイテムを登録", new_item_path, class: "btn btn-primary user_btn1" %></p>
        <div>
         <p><%= link_to "現在借りているアイテムはこちら", users_show_borrowing_path %></p>
@@ -27,39 +27,7 @@
       <% end %>
     </div>
     
-      <div class="col-md-6">
-      <p><%= link_to "新規アイテムを登録", new_item_path, class: "btn btn-primary user_btn1" %></p>
-       <div>
-        <p><%= link_to "現在借りているアイテムはこちら", "#" %></p>
-      </div>
-      <% if @borrowings.any? %>
-        <h3>借りているアイテム (個数: <%= @borrowings.count(:borrowed_item_id) %>)</h3>
 
 
-        <ol class="items">
-          <%#= render @borrowings %>
-          <%#= render @items %>
-<% @borrowings.each do | item | %>
-<% if item.borrowed_item_id != nil %>
-<% borrowing_item = Item.find(item.borrowed_item_id) %>
-<p>
-<% if borrowing_item.avatar? %>
-  <div class="img-wrap">
-    <%= image_tag borrowing_item.avatar.thumb.url %>
-  </div>
-<% end %>
-</p>
-<span class="title">タイトル: <%= link_to borrowing_item.title, item_path(borrowing_item.id) %></span></br>
-<span class="title">有効期間: <%= borrowing_item.start_day %> 〜 <%= borrowing_item.end_day %></span></br>
-<%= link_to "予約中", item_path(borrowing_item.id), class: "btn btn-large btn-primary" %>
-<hr/>
-<% else %>
-
-<% end %>
-
-        </ol>
-      <% end %>
-<% end %>
-    </div>
   </div>
 </div>

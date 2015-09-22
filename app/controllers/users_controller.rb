@@ -4,16 +4,16 @@ class UsersController < ApplicationController
   end
   
   def show
-   @user = User.find(params[:id])
-   @items = @user.items
-   @borrowings = @user.borrowed_items
+     @user = User.find(params[:id])
+     @items = @user.items
+     @borrowings = @user.borrowed_items
   end
   
   def show_borrowing
     user_id = current_user.id
     @user = User.find(user_id)
-  @items = @user.items
-  @borrowings = @user.borrowed_items
+    @items = @user.items
+    @borrowings = @user.borrowed_items
   end
 
   

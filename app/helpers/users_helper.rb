@@ -8,7 +8,7 @@ module UsersHelper
   
   def show
     @user = User.find(params[:id])
-    @items = @user.itemss
+    @items = @user.items
   end
   
 end
