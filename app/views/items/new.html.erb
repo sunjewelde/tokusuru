@@ -9,7 +9,16 @@
       <%= f.text_field :title %>
 
       <%= f.label :アイテムカテゴリー %>
-      <%= f.text_field :category %>
+      <%#= f.text_field :category %>
+      <%= f.select :category, {"家電、カメラ、AV機器" => "c1",
+                               "パソコン・オフィス用品" => "c2", 
+                               "ホーム＆キッチン・ペット・DIY" => "c3", 
+                               "ヘルス＆ビューティー" => "c4", 
+                               "ベビー・おもちゃ・ホビー" => "c5", 
+                               "ファッション・バッグ・腕時計" => "c6", 
+                               "スポーツ＆アウトドア" => "c7", 
+                               "車＆バイク・産業・研究開発" => "c8" },
+                               :include_blank => true %>
 
       <%= f.label :アイテム利用可能開始日 %>
       <%= f.date_field :start_day %>

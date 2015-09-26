@@ -5,7 +5,9 @@ class User < ActiveRecord::Base
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
-    has_secure_password
+  has_secure_password
+  
+
     
     has_many :items
     has_many :borrowed_items, class_name: "Borrowing", foreign_key: "borrower_id", dependent: :destroy
@@ -17,6 +19,8 @@ class User < ActiveRecord::Base
    def borrow(item)
     # borrowed_items.create(borrower_id: item.id)
     borrowed_items.create(borrowed_item_id: item.id)
+    # borrowed_items.create(borrowed_item_id: item.id, start_day: date, end_day: date)
+    # borrowed_items.create([{borrowed_item_id: item.id}, {start_day: date}, {end_day: date}])
    end
   
   # アイテムを返却する

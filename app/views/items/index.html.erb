@@ -1,9 +1,21 @@
 <% provide(:title, 'All items') %>
 <h1>貸したいアイテム一覧</h1>
+
+<div class="container">
+    <div>
+        <%= page_entries_info @items %>
+    </div>
+    <div>
+        <%= paginate @items %>
+    </div>
+</div>
+        
+        
 <div class="row">
       <div>
         <% if logged_in? %>
                 <ul class="col-md-6 col-md-offset-3 media-list">
+                  
                     <% @items.each do | item | %>
                           <!--追加 -->
                           <% if current_user.borrowing?(item) %>
@@ -13,23 +25,30 @@
                                   <div class="thumbnail">
                                     <%= image_tag item.avatar.thumb.url %>
                                   </div>
+                                <% else %>
+                                  <div class="thumbnail">
+                                    <%= image_tag("noimage.gif" , "alt: no-image") %>
+                                  </div>
                                 <% end %>
                               </p>
                             <span class="title">タイトル: <%= link_to item.title, item_path(item.id) %></span></br>
                             <strong class="user_title">予約中</strong>
                             <hr/>
                           <!--追加終了-->
-      
                         
                         <% elsif current_user.items.include?(item) %>
                           <li class="media">
                             <p>
                               <strong>Image:</strong>
-                              <%# if item.avatar? %>
-                                <div class="thumbnail">
-                                  <%= image_tag item.avatar.thumb.url %>
-                                </div>
-                              <%# end %>
+                                <% if item.avatar? %>
+                                  <div class="thumbnail">
+                                    <%= image_tag item.avatar.thumb.url %>
+                                  </div>
+                                <% else %>
+                                  <div class="thumbnail">
+                                    <%= image_tag("noimage.gif" ,  alt: "no-image") %>
+                                  </div>
+                                <% end %>
                             </p>
                           <span class="title">タイトル: <%= link_to item.title, item_path(item.id) %></span></br>
                           <span class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></span></br>
@@ -41,11 +60,15 @@
                           <li class="media">
                              <p>
                               <strong>Image:</strong>
-                              <% if item.avatar? %>
-                                <div class="thumbnail">
-                                  <%= image_tag item.avatar.thumb.url %>
-                                </div>
-                              <% end %>
+                                <% if item.avatar? %>
+                                  <div class="thumbnail">
+                                    <%= image_tag item.avatar.thumb.url %>
+                                  </div>
+                                <% else %>
+                                  <div class="thumbnail">
+                                    <%= image_tag("noimage.gif" ,  alt: "no-image") %>
+                                  </div>
+                                <% end %>
                             </p>
                             <span class="title">タイトル: <%= link_to item.title, item_path(item.id) %></span></br>
                             <span class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></span></br>
@@ -55,17 +78,22 @@
                         <% end %>
                     <% end %>
                 </ul>
+
         <% else %>
                  <ul class="col-md-6 col-md-offset-3 media-list">
                     <% @items.each do | item | %>
                           <li class="media">
                              <p>
                               <strong>Image:</strong>
-                              <% if item.avatar? %>
-                                <div class="thumbnail">
-                                  <%= image_tag item.avatar.thumb.url %>
-                                </div>
-                              <% end %>
+                                <% if item.avatar? %>
+                                  <div class="thumbnail">
+                                    <%= image_tag item.avatar.thumb.url %>
+                                  </div>
+                                <% else %>
+                                  <div class="thumbnail">
+                                    <%= image_tag("noimage.gif" ,  alt: "no-image") %>
+                                  </div>
+                                <% end %>
                             </p>
                             <span class="title">タイトル: <%= link_to item.title, item_path(item.id) %></span></br>
                             <span class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></span></br>
@@ -74,6 +102,7 @@
                          </li>
                     <% end %>
                 </ul>
+
         <% end %>
       </div>
 </div>

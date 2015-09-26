@@ -3,14 +3,26 @@ class ItemsController < ApplicationController
   
   def index
     # itemを全て取得する。
-    @items = Item.all
+    # @items = Item.all
+    @items = Item.page(params[:page])
   end
 
   def find_borrowing
+    #For ransack
+    @q = Item.ransack(params[:q])
+    @items = @q.result(distinct: true)
   end
   
   def found_item
-     @items = Item.search(params[:search])
+    # @items = Item.search(params[:search])
+    
+    # Pagenatey用
+    # @found_items = Item.search(params[:search])
+    # @items = @found_items.page(params[:page])
+    
+    # For ransack
+    @q = Item.ransack(params[:q])
+    @items = @q.result(distinct: true)
   end
   
   def show

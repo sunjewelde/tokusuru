@@ -22,26 +22,10 @@ class Item < ActiveRecord::Base
     if search # Controllerから渡されたパラメータが!= nilの場合は、titleカラムを部分一致検索
       Item.where(['title LIKE ?', "%#{search}%"])
     else
+      flash[:danger] = "アイテムは見つかりませんでした。"
       Item.all #全て表示。
     end
   end
   
-  
-    # アイテムを貸し出す
-  # def lend(item)
-  #   borrower_user.create(borrower_id: current_user.id)
-  # end
-  
-  # # アイテムが返却される
-  # def item_return(item)
-  #   borrower_user.find_by(borrower_id: current_user.id).destroy
-  # end
-   
-  #   # アイテムを借りているかどうか？
-  # def borrowing?(user)
-  #   borrower_user.include?(user)
-  # end
 
-  
-  
 end

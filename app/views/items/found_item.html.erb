@@ -1,42 +1,63 @@
 <% provide(:title, 'All items') %>
 <h1>見つかったアイテム</h1>
+<div class="container">
+    <div>
+        <%#= page_entries_info @items %>
+    </div>
+    <div>
+        <%#= paginate @items %>
+    </div>
+</div>
 <div class="row">
     <div>
       <% if logged_in? %>
-            <ul class="col-md-6 col-md-offset-3 media-list">
-                <% @items.each do | item | %>
-                    <li class="media">
-                      <% if current_user.items.include?(item) %>
-                      <p>
-                          <strong>Image:</strong>
-                          <% if item.avatar? %>
-                            <div class="thumbnail">
-                              <%= image_tag item.avatar.thumb.url %>
-                            </div>
-                          <% end %>
-                      </p>
-                      <span class="title">タイトル: <%= link_to item.title, item_path(item.id) %></span></br>
-                      <span class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></span></br>
-                      <strong class="user_title">自分のアイテム</strong>
-                      <hr/>
-                    <% else %>
-                      <li class="media">
-                         <p>
-                          <strong>Image:</strong>
-                          <% if item.avatar? %>
-                            <div class="thumbnail">
-                              <%= image_tag item.avatar.thumb.url %>
-                            </div>
-                          <% end %>
-                        </p>
-                        <span class="title">タイトル: <%= link_to item.title, item_path(item.id) %></span></br>
-                        <span class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></span></br>
-                        <%= link_to "借りたい", item_path(item.id), class: "btn btn-large btn-primary" %>
-                      <hr/>
-                     </li>
-                    <% end %>
-                <% end %>
-            </ul>
+            <% if @items.present? %>
+                <ul class="col-md-6 col-md-offset-3 media-list">
+                        <% @items.each do | item | %>
+                            <li class="media">
+                              <% if current_user.items.include?(item) %>
+                              <p>
+                                  <strong>Image:</strong>
+                                  <% if item.avatar? %>
+                                    <div class="thumbnail">
+                                      <%= image_tag item.avatar.thumb.url %>
+                                    </div>
+                                　<% else %>
+                                    <div class="thumbnail">
+                                      <%= image_tag("noimage.gif") %>
+                                    </div>
+                                  <% end %>
+                              </p>
+                              <span class="title">タイトル: <%= link_to item.title, item_path(item.id) %></span></br>
+                              <span class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></span></br>
+                              <strong class="user_title">自分のアイテム</strong>
+                              <hr/>
+                            <% else %>
+                              <li class="media">
+                                 <p>
+                                  <strong>Image:</strong>
+                                  <% if item.avatar? %>
+                                    <div class="thumbnail">
+                                      <%= image_tag item.avatar.thumb.url %>
+                                    </div>
+                                　<% else %>
+                                    <div class="thumbnail">
+                                      <%= image_tag("noimage.gif") %>
+                                    </div>
+                                  <% end %>
+                                </p>
+                                <span class="title">タイトル: <%= link_to item.title, item_path(item.id) %></span></br>
+                                <span class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></span></br>
+                                <%= link_to "借りたい", item_path(item.id), class: "btn btn-large btn-primary" %>
+                              <hr/>
+                             </li>
+                            <% end %>
+                            <%# カテゴリーの全てのアイテムを表示 %>
+                        <% end %>
+                </ul>
+            <% else %>
+            <% end %>
+            
       <% else %>
             <ul class="col-md-6 col-md-offset-3 media-list">
                 <% @items.each do | item | %>
@@ -46,6 +67,10 @@
                           <% if item.avatar? %>
                             <div class="thumbnail">
                               <%= image_tag item.avatar.thumb.url %>
+                            </div>
+                        　<% else %>
+                            <div class="thumbnail">
+                              <%= image_tag("noimage.gif") %>
                             </div>
                           <% end %>
                         </p>

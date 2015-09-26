@@ -8,7 +8,7 @@
     <span>所有者: <%= @user.name %></span>
 </h2>
 
-<div>
+<div class="container">
   <%#= link_to gravatar_for(@item.user, size: 30), @item.user %>
   <div>
       <p>
@@ -38,22 +38,32 @@
  <%#= f.submit "アイテムを予約", class: "btn btn-large btn-primary" %>
  <%# end %>
  
- <%#= form_for(current_user.borrowed_items.build, remote: true) do |f| %>
- <%#= hidden_field_tag :borrower, current_user.id %>
- <%#= hidden_field_tag :borrowed_item, @item.id %>
- <%#= f.submit "アイテムを予約", class: "btn btn-primary" %>
- <%# end %>
+ <% if logged_in? %>
+      <% if current_user.borrowing?(@item) %>
+        <%= form_for(current_user.borrowed_items.find_by(borrowed_item_id: @item.id),
+                 html: { method: :delete }) do |f| %>
+        <%= f.submit "予約をキャンセル", class: "btn" %>
+        <% end %>
+      
+      <% elsif current_user.items.include?(@item) %>
+        <p>自分のアイテム</p>
+        <%= link_to "編集", edit_item_path(@item), class: "btn btn-primary" %>
+        
+      <% else %>
+        <%= form_for(current_user.borrowed_items.build) do |f| %>
+          <%= hidden_field_tag :borrowed_item, @item.id %>
+          <%= label_tag(:start_day, "利用開始日") %>
+          <%= date_field_tag :start_day %>
+          <%= label_tag(:end_day, "利用終了日") %>
+          <%= date_field_tag :end_day %>
+          <%= f.submit "アイテムを予約", class: "btn btn-primary" %>
+        <% end %>
+      <% end %>
+ <% else %>
+     <%# 何も表示しない %>
+ <% end %>
+ 
   
-  <% if current_user.borrowing?(@item) %>
-    <%= form_for(current_user.borrowed_items.find_by(borrowed_item_id: @item.id),
-             html: { method: :delete }) do |f| %>
-    <%= f.submit "予約をキャンセル", class: "btn" %>
-    <% end %>
-  <% else %>
-    <%= form_for(current_user.borrowed_items.build) do |f| %>
-      <%= hidden_field_tag :borrowed_item, @item.id %>
-      <%= f.submit "アイテムを予約", class: "btn btn-primary" %>
-    <% end %>
-  <% end %>
+
 
 </div>
