@@ -22,7 +22,8 @@ class ItemsController < ApplicationController
     
     # For ransack
     @q = Item.ransack(params[:q])
-    @items = @q.result(distinct: true)
+    # @items = @q.result(distinct: true)
+    @items = @q.result(distinct: true).page(params[:page])
   end
   
   def show
@@ -45,9 +46,19 @@ class ItemsController < ApplicationController
     end
   end
   
-  # def reserve
-  #   @item = Item.find_by(id: params[:id])
-  # end
+  def item_ranking
+    @items = Item.all
+    hot_item = Item.group(:title).order('count_title desc').limit(5).count(:title).keys
+
+    # @ranking = Item.where(title: hot_item).sort_by {|i| hot_item.index(i.id)}
+    @ranking = Item.where(title: hot_item).sort.reverse!
+    # @ranking = ranking.uniq
+    # binding.pry
+    # @ranking
+  end
+  
+  def item_borrower_ranking
+  end
   
   def destroy
     @item = current_user.items.find_by(id: params[:id])
