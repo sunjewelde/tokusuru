@@ -4,12 +4,12 @@
             <%= search_form_for(@q, url: items_found_item_path, method: :get) do |f| %>
             <%#= search_form_for @q do |f| %>
                 <div>
-                    <%= f.label :アイテム名 %>
+                    <%= f.label :title_cont, "アイテム名" %>
                     <%#= f.search_field :title_eq %>
                     <%= f.search_field :title_cont %>
                 </div>
                 <div>
-                    <%= f.label :カテゴリー%>
+                    <%= f.label :category, "カテゴリー" %>
                     <%#= f.search_field :title %>
                     <%= f.select :category, {"家電、カメラ、AV機器" => "c1",
                                "パソコン・オフィス用品" => "c2", 
@@ -22,14 +22,14 @@
                                :include_blank => true %>
                 </div>
                 <div>
-                     <%= f.label :アイテム利用可能開始日 %>
+                     <%= f.label :start_day, "アイテム利用可能開始日" %>
                      <%= f.date_field :start_day %>
                 </div>
                 <div>
-                     <%= f.label :アイテム利用終了日 %>
+                     <%= f.label :end_day, "アイテム利用終了日" %>
                      <%= f.date_field :end_day %>
                 </div>
-                <%= f.submit %>
+                <%= f.submit "探す" %>
             <% end %>
         </p>
 </div>

@@ -1,1 +1,59 @@
 <h1>item_borrower_ranking</h1>
+
+<div class="container">
+    <div>
+        <%#= page_entries_info @items %>
+    </div>
+    <div>
+        <%#= paginate @items %>
+    </div>
+</div>
+        
+        
+<div class="row">
+      <div>
+
+           <ul class="col-md-6 col-md-offset-3 media-list">
+              <% item_name1 = "z1aw3" %>
+              <% i = 1 %>
+              <% @ranking.each do | item | %>
+                    <% item_name0 = item.title %>
+                    <% if item_name0 != item_name1 %>
+                          <li class="media">
+                             <p>
+                              <strong>ランキング: <%= i %></strong>
+                                <% if item.avatar? %>
+                                  <div class="thumbnail">
+                                    <%= image_tag item.avatar.thumb.url %>
+                                  </div>
+                                <% else %>
+                                  <div class="thumbnail">
+                                    <%= image_tag("noimage.gif" ,  alt: "no-image") %>
+                                  </div>
+                                <% end %>
+                             </p>
+                                <p>  
+                                <span class="title">タイトル:</span></br>
+                               
+                                    <% @q = Item.ransack(params[:q]) %>
+                                    <% @items = @q.result(distinct: true) %>
+                                    
+                                        <%= search_form_for(@q, url: items_found_item_path, method: :get) do |f| %>
+                                        <%#= f.label :title_cont, item.title %>
+                                        <%= f.search_field :title_cont, value: item.title, class: "user_border"  %>
+                                        <%= f.submit "アイテムを探す"%>
+                                        <% end %>
+            
+                                </p>
+                          <hr/>
+                         </li>
+                      <% item_name1 = item.title %>
+                      <% i += 1 %>
+                   <% else %>
+                       <% item_name1 = item.title %>
+                   <% end %>
+              <% end %>
+          </ul>
+
+      </div>
+</div>

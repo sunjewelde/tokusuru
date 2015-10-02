@@ -12,53 +12,16 @@
         
 <div class="row">
       <div>
-        <% if logged_in? %>
-                <ul class="col-md-6 col-md-offset-3 media-list">
-                  
-                    <% @ranking.each do | item | %>
-                          <!--追加 -->
-                          <% if current_user.borrowing?(item) %>
-                              <p>
-                                <strong>Image:</strong>
-                                <% if item.avatar? %>
-                                  <div class="thumbnail">
-                                    <%= image_tag item.avatar.thumb.url %>
-                                  </div>
-                                <% else %>
-                                  <div class="thumbnail">
-                                    <%= image_tag("noimage.gif" , "alt: no-image") %>
-                                  </div>
-                                <% end %>
-                              </p>
-                            <span class="title">タイトル: <%= link_to item.title, item_path(item.id) %></span></br>
-                            <strong class="user_title">予約中</strong>
-                            <hr/>
-                          <!--追加終了-->
-                        
-                        <% elsif current_user.items.include?(item) %>
-                          <li class="media">
-                            <p>
-                              <strong>Image:</strong>
-                                <% if item.avatar? %>
-                                  <div class="thumbnail">
-                                    <%= image_tag item.avatar.thumb.url %>
-                                  </div>
-                                <% else %>
-                                  <div class="thumbnail">
-                                    <%= image_tag("noimage.gif" ,  alt: "no-image") %>
-                                  </div>
-                                <% end %>
-                            </p>
-                          <span class="title">タイトル: <%= link_to item.title, item_path(item.id) %></span></br>
-                          <span class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></span></br>
-                          <strong class="user_title">所有</strong>
-                          <hr/>
-                          </li>
-                          
-                          <% else %>
+
+           <ul class="col-md-6 col-md-offset-3 media-list">
+              <% item_name1 = "z1aw3" %>
+              <% i = 1 %>
+              <% @ranking.each do | item | %>
+                    <% item_name0 = item.title %>
+                    <% if item_name0 != item_name1 %>
                           <li class="media">
                              <p>
-                              <strong>Image:</strong>
+                              <strong>ランキング: <%= i %></strong>
                                 <% if item.avatar? %>
                                   <div class="thumbnail">
                                     <%= image_tag item.avatar.thumb.url %>
@@ -68,40 +31,29 @@
                                     <%= image_tag("noimage.gif" ,  alt: "no-image") %>
                                   </div>
                                 <% end %>
-                            </p>
-                            <span class="title">タイトル: <%= link_to item.title, item_path(item.id) %></span></br>
-                            <span class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></span></br>
-                            <%= link_to "借りたい", item_path(item.id), class: "btn btn-large btn-primary" %>
+                             </p>
+                                <p>  
+                                <span class="title">タイトル:</span></br>
+                               
+                                    <% @q = Item.ransack(params[:q]) %>
+                                    <% @items = @q.result(distinct: true) %>
+                                    
+                                        <%= search_form_for(@q, url: items_found_item_path, method: :get) do |f| %>
+                                        <%#= f.label :title_cont, item.title %>
+                                        <%= f.search_field :title_cont, value: item.title, class: "user_border"  %>
+                                        <%= f.submit "アイテムを探す"%>
+                                        <% end %>
+            
+                                </p>
                           <hr/>
                          </li>
-                        <% end %>
-                    <% end %>
-                </ul>
+                      <% item_name1 = item.title %>
+                      <% i += 1 %>
+                   <% else %>
+                       <% item_name1 = item.title %>
+                   <% end %>
+              <% end %>
+          </ul>
 
-        <% else %>
-                 <ul class="col-md-6 col-md-offset-3 media-list">
-                    <% @ranking.each do | item | %>
-                          <li class="media">
-                             <p>
-                              <strong>Image:</strong>
-                                <% if item.avatar? %>
-                                  <div class="thumbnail">
-                                    <%= image_tag item.avatar.thumb.url %>
-                                  </div>
-                                <% else %>
-                                  <div class="thumbnail">
-                                    <%= image_tag("noimage.gif" ,  alt: "no-image") %>
-                                  </div>
-                                <% end %>
-                            </p>
-                            <span class="title">タイトル: <%= link_to item.title, item_path(item.id) %></span></br>
-                            <span class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></span></br>
-                            <%= link_to "借りたい", login_path, class: "btn btn-large btn-primary" %>
-                          <hr/>
-                         </li>
-                    <% end %>
-                </ul>
-
-        <% end %>
       </div>
 </div>

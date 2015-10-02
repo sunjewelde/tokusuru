@@ -48,16 +48,16 @@ class ItemsController < ApplicationController
   
   def item_ranking
     @items = Item.all
-    hot_item = Item.group(:title).order('count_title desc').limit(5).count(:title).keys
-
-    # @ranking = Item.where(title: hot_item).sort_by {|i| hot_item.index(i.id)}
-    @ranking = Item.where(title: hot_item).sort.reverse!
-    # @ranking = ranking.uniq
-    # binding.pry
-    # @ranking
+    hot_item = Item.group(:title).order('count_title desc').limit(10).count(:title).keys
+    @ranking = Item.where(title: hot_item).sort_by {|i| hot_item.index(i.title)}
   end
   
   def item_borrower_ranking
+    # @items = Borrowing.all
+    item_key = Borrowing.group(:borrowed_item_id).order('count_borrowed_item_id desc').count(:borrowed_item_id).keys
+    # binding.pry
+    hot_item  = Item.where(id: item_key).group(:title).order('count_title desc').limit(10).count(:title).keys
+    @ranking =Item.where(title: hot_item).sort_by {|i| hot_item.index(i.title)}
   end
   
   def destroy
