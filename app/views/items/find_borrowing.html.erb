@@ -1,6 +1,7 @@
 <h1>借りたいアイテムを探す</h1>
 <div class="container">
-        <p>
+    <div class = "row">
+        <div class="col-md-6 col-md-offset-3 media-list">
             <%= search_form_for(@q, url: items_found_item_path, method: :get) do |f| %>
             <%#= search_form_for @q do |f| %>
                 <div>
@@ -31,7 +32,9 @@
                 </div>
                 <%= f.submit "探す" %>
             <% end %>
-        </p>
+        </div>
+    </div>
+        
 </div>
 
 <%= render 'layouts/categorylist' %>
