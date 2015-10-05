@@ -5,7 +5,8 @@
                     <img src="<%= asset_path "category1.jpg" %>" />
                 </div>
                 <div class="caption user_category_list">
-                    <p><a href="#">家電、カメラ、AV機器</a></p>
+                    <p><%= link_to '家電、カメラ、AV機器', items_item_category_path(category: "c1"),
+                                                           :method => :get %></p>
                 </div>
             </div>
             
@@ -14,7 +15,8 @@
                     <img src="<%= asset_path "category2.jpg" %>" />
                 </div>
                 <div class="caption user_category_list">
-                    <p><a href="#">パソコン・オフィス用品</a></p>
+                    <p><%= link_to 'パソコン・オフィス用品', items_item_category_path(category: "c2"),
+                                                           :method => :get %></p>
                 </div>
             </div>
             
@@ -23,7 +25,8 @@
                     <img src="<%= asset_path "category3.jpg" %>" />
                 </div>
                 <div class="caption user_category_list">
-                    <p><a href="#">ホーム＆キッチン・ペット・DIY</a></p>
+                    <p><%= link_to 'ホーム＆キッチン・ペット・DIY', items_item_category_path(category: "c3"),
+                                                           :method => :get %></p>
                 </div>
             </div>
             
@@ -32,7 +35,8 @@
                     <img src="<%= asset_path "category4.jpg" %>" />
                 </div>
                 <div class="caption user_category_list">
-                    <p><a href="#">ヘルス＆ビューティー</a></p>
+                    <p><%= link_to 'ヘルス＆ビューティー', items_item_category_path(category: "c4"),
+                                                           :method => :get %></p>
                 </div>
             </div>
        </div>
@@ -43,7 +47,8 @@
                     <img src="<%= asset_path "category5.jpg" %>" />
                 </div>
                 <div class="caption user_category_list">
-                    <p><a href="#">ベビー・おもちゃ・ホビー</a></p>
+                    <p><%= link_to 'ベビー・おもちゃ・ホビー', items_item_category_path(category: "c5"),
+                                                           :method => :get %></p>
                 </div>
             </div>
             
@@ -52,7 +57,8 @@
                     <img src="<%= asset_path "category6.jpg" %>" />
                 </div>
                 <div class="caption user_category_list">
-                    <p><a href="#">ファッション・バッグ・腕時計</a></p>
+                    <p><%= link_to 'ファッション・バッグ・腕時計', items_item_category_path(category: "c6"),
+                                                           :method => :get %></p>
                 </div>
             </div>
             
@@ -61,7 +67,8 @@
                     <img src="<%= asset_path "category7.jpg" %>" />
                 </div>
                 <div class="caption user_category_list">
-                    <p><a href="#">スポーツ＆アウトドア</a></p>
+                    <p><%= link_to 'スポーツ＆アウトドア', items_item_category_path(category: "c7"),
+                                                           :method => :get %></p>
                 </div>
             </div>
             
@@ -70,7 +77,8 @@
                     <img src="<%= asset_path "category8.jpg" %>" />
                 </div>
                 <div class="caption user_category_list">
-                    <p><a href="#">車＆バイク・産業・研究開発</a></p>
+                    <p><%= link_to '車＆バイク・産業・研究開発', items_item_category_path(category: "c8"),
+                                                           :method => :get %></p>
                 </div>
             </div>
        </div>

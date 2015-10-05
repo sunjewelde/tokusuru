@@ -60,6 +60,12 @@ class ItemsController < ApplicationController
     @ranking =Item.where(title: hot_item).sort_by {|i| hot_item.index(i.title)}
   end
   
+  def item_category
+    #itemカテゴリーを取得
+    @items = Item.where(category: params[:category]).page(params[:page])
+    #itemをカテゴリーでソート
+  end
+  
   def destroy
     @item = current_user.items.find_by(id: params[:id])
     return redirect_to current_user_path if @item.nil?

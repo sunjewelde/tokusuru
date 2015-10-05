@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'users/show_borrowing' => "users#show_borrowing"
   get 'items/item_ranking' => "items#item_ranking"
   get 'items/item_borrower_ranking' => "items#item_borrower_ranking"
+  get 'items/item_category' => "items#item_category"
 
   root to: 'top_pages#home'
   get 'signup',  to: 'users#new'
