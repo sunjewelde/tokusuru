@@ -43,9 +43,11 @@ class ItemsController < ApplicationController
         @items = Item.search(:title_cont => title).result.page(params[:page])
       end
     else
-      @q = Item.ransack(params[:q])
-      @items = @q.result(distinct: true)
-      @items = @q.result(distinct: true).page(params[:page])
+      # @q = Item.ransack(params[:q])
+      # @items = @q.result(distinct: true)
+      # @items = @q.result(distinct: true).page(params[:page])
+      title = params[:q][:title_cont]
+      @items = Item.search(:title_cont => title).result.page(params[:page])
     end
     
   end
