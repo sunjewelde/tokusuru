@@ -35,7 +35,7 @@
                                 <p>  
                                 <span class="title">タイトル:</span></br>
                                
-                                    <% @q = Item.ransack(params[:q]) %>
+                                    <%# @q = Item.ransack(params[:q]) %>
                                     <%# @items = @q.result(distinct: true) %>
                                     
                                         <%= search_form_for(@q, url: items_found_item_path, method: :get) do |f| %>
@@ -43,7 +43,6 @@
                                         <%= f.search_field :title_cont, value: item.title, class: "user_border"  %>
                                         <%= f.submit "アイテムを探す"%>
                                         <% end %>
-            
                                 </p>
                           <hr/>
                          </li>

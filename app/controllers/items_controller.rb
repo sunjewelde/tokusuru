@@ -75,6 +75,7 @@ class ItemsController < ApplicationController
     @items = Item.all
     hot_item = Item.group(:title).order('count_title desc').limit(10).count(:title).keys
     @ranking = Item.where(title: hot_item).sort_by {|i| hot_item.index(i.title)}
+    @q = Item.ransack(params[:q])
   end
   
   def item_borrower_ranking
