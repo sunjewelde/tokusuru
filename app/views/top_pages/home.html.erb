@@ -1,37 +1,70 @@
  <!--<div class="navbar navbar-inverse">-->
     
 <!--</div>-->
-
-<div class="jumbotron">
-    <%#= render 'layouts/mainnav' %>
-    <div class="container">
-        <h1>あたらしいリサイクルのかたち</h1>
-        <h3 class="user_margin2">賢くモノを活用しよう</h3>
-        <p class="user_margin1"><%= link_to "ご利用方法", '#', class: "btn btn-danger btn btn-primary btn-lg", type: "button"  %></p>
+<div class="container-fluid" id="content">
+    
+    <div class="jumbotron">
+        <%#= render 'layouts/mainnav' %>
+        <div class="container-inner">
+            <h1>あたらしいリサイクルのかたち</h1>
+            <h3 class="user_margin2">賢くモノを活用しよう</h3>
+            <p class="user_margin1"><%= link_to "ご利用方法", "#usage", class: "btn btn-danger btn btn-primary btn-lg", type: "button"  %></p>
+        </div>
     </div>
+    
+    
+    <div id="about">
+        <div class="container-inner bg-info user_padding3">
+            <h3 class="title center">
+                TOKUSURUとは
+            </h3>
+            <p class="user-words">
+                <span>今度はいつ使うか分からないモノがたくさんある。</span></br>
+                <span>捨てたくないけど家に置くモノを減らしたい。</span></br>
+                <apan>少しだけ使いたいだけなので買うより借りたい。</span></br>
+                <span>ミニマリストを目指したい。</span></br>
+                <span>そんな方がモノを賢くシェアするサービスです。</span></br>
+        　　</p>
+        </div>
+        
+    </div>
+    
+    <div id="usage">
+         <div class="container-inner">
+             <h3 class="title center">利用方法</h3>
+         </div>   
+    </div>
+    
+    
+    <div class="container-inner">   
+         <div class="container user-height">
+            <div class="row">
+    
+                <div class="col-lg-6 col-sm-6 user_category_list img-responsive ">
+                    <h3>モノを掲載</h3>
+            
+                        <div class="linkArea">
+                            <div><%= link_to "貸したい", items_path, class: "user_bg_img1" %></div>
+                        </div>
+                </div>
+                
+                <div class="col-lg-6 col-sm-6 user_category_list img-responsive">
+                    <h3>モノを探す</h3>
+                    
+                        <div class="linkArea">
+                            <div><%= link_to "借りたい", items_find_borrowing_path, class: "user_bg_img2" %></div>
+                        </div>
+                </div>
+            </div>
+         </div>
+         
+        <div id="category">
+            <%= render 'layouts/categorylist' %>
+        </div>
+    </div> 
+   
+    
 </div>
 
-
-    <div class="container">
-     <!--<div class="container">-->
-        <div class="row">
-            <div class="col-lg-6 col-sm-6 user_category_list img-responsive">
-                <h3>モノを掲載</h3>
-                <div class="user_bg_img1">
-                    <P>貸したい</P>
-                </div>
-            </div>
-            <div class="col-lg-6 col-sm-6 user_category_list img-responsive">
-                <h3>モノを探す</h3>
-                <div class="user_bg_img2">
-                    <p>借りたい</p>
-                </div>
-            </div>
-        </div>
-     <!--</div>-->
-    
-    <%= render 'layouts/categorylist' %>
-  
-    </div>
 
  <%= render 'layouts/footer' %>

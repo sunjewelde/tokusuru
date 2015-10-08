@@ -13,18 +13,43 @@ class ItemsController < ApplicationController
     @items = @q.result(distinct: true)
   end
   
+  require 'date'
   def found_item
-    # @items = Item.search(params[:search])
+    if params[:q][:start_day] != nil and params[:q][:end_day] != nil and params[:q][:category] != nil and  params[:q][:title_cont] != nil
+      title = params[:q][:title_cont]
+      category = params[:q][:category]
+      start_day_s = params[:q][:start_day]
+        if start_day_s != ""
+        start_day = Date.parse(start_day_s)
+        end
+      end_day_s = params[:q][:end_day]
+        if end_day_s != ""
+        end_day = Date.parse(end_day_s)
+        end
+      
+      if category != "" && start_day_s == "" && end_day_s == ""
+        @i = Item.where(:category => category )
+        @items = @i.search(:title_cont => title).result.page(params[:page])
+      elsif category == "" && start_day_s != "" && end_day_s != ""
+        @items = Item.search(:start_day_lteq => start_day, :end_day_gteq => end_day).result.page(params[:page])
+        # @items_start = Item.search(:start_day_lteq => start_day).result
+        # @items = @items_start.search(:end_day_gteq => end_day).result.page(params[:page])
+      elsif category != "" && start_day_s != "" && end_day_s != ""
+        # @items = Item.search(:category => category, :start_day_lteq => start_day, :end_day_gteq => end_day).result.page(params[:page])
+        @i = Item.where(:category => category )
+        @items_start = @i.search(:start_day_lteq => start_day).result
+        @items = @items_start.search(:end_day_gteq => end_day).result.page(params[:page])
+      else
+        @items = Item.search(:title_cont => title).result.page(params[:page])
+      end
+    else
+      @q = Item.ransack(params[:q])
+      @items = @q.result(distinct: true)
+      @items = @q.result(distinct: true).page(params[:page])
+    end
     
-    # Pagenatey用
-    # @found_items = Item.search(params[:search])
-    # @items = @found_items.page(params[:page])
-    
-    # For ransack
-    @q = Item.ransack(params[:q])
-    # @items = @q.result(distinct: true)
-    @items = @q.result(distinct: true).page(params[:page])
   end
+  
   
   def show
     @item = Item.find_by(id: params[:id])
@@ -62,6 +87,25 @@ class ItemsController < ApplicationController
   
   def item_category
     #itemカテゴリーを取得
+    ct = params[:category]
+    if ct == "c1"
+       @category = "家電、カメラ、AV機器"
+      elsif ct == "c2"
+       @category = "パソコン・オフィス用品"
+      elsif ct == "c3"
+       @category = "ホーム＆キッチン・ペット・DIY"
+      elsif ct == "c4"
+       @category = "ヘルス＆ビューティー"
+      elsif ct == "c5"
+       @category = "ベビー・おもちゃ・ホビー"
+      elsif ct == "c6"
+       @category = "ファッション・バッグ・腕時計"
+      elsif ct == "c7"
+       @category = "スポーツ＆アウトド"
+      else
+       @category = "車＆バイク・産業・研究開発"
+    end
+      
     @items = Item.where(category: params[:category]).page(params[:page])
     #itemをカテゴリーでソート
   end

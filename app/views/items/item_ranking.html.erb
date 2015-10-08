@@ -21,7 +21,7 @@
                     <% if item_name0 != item_name1 %>
                           <li class="media">
                              <p>
-                              <strong>ランキング: <%= i %></strong>
+                              <strong><%= i %> 位</strong>
                                 <% if item.avatar? %>
                                   <div class="thumbnail">
                                     <%= image_tag item.avatar.thumb.url %>
@@ -36,7 +36,7 @@
                                 <span class="title">タイトル:</span></br>
                                
                                     <% @q = Item.ransack(params[:q]) %>
-                                    <% @items = @q.result(distinct: true) %>
+                                    <%# @items = @q.result(distinct: true) %>
                                     
                                         <%= search_form_for(@q, url: items_found_item_path, method: :get) do |f| %>
                                         <%#= f.label :title_cont, item.title %>

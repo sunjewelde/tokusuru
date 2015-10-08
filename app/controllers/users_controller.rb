@@ -15,7 +15,8 @@ class UsersController < ApplicationController
     user_id = current_user.id
     @user = User.find(user_id)
     @items = @user.items
-    @borrowings = @user.borrowed_items
+    # @borrowings = @user.borrowed_items
+    @borrowings = @user.borrowed_items.page(params[:page])
   end
 
   

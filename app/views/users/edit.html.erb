@@ -1,7 +1,7 @@
 <% provide(:title, "Edit user") %>
 <h1>ユーザー情報編集</h1>
-
-<div class="row">
+<div class="container">
+    <div class="row">
     <div class="span6 offset3">
         <%= form_for(@user) do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
@@ -21,9 +21,12 @@
         <%= f.submit "変更を保存", class: "btn btn-large btn-primary" %>
         <% end %>
         
-        <%= gravatar_for @user %>
-        <div>
+        <div class="user_margin1">
+            <%= gravatar_for @user %>
+        </div>
+        <div class="user_margin1">
             <a href="http://gravatar.com/emails">change</a>
         </div>
     </div>
+</div>
 </div>

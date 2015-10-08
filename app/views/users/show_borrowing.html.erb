@@ -9,13 +9,19 @@
       </section>
     </div>
     
-    <div class="col-md-12">
-        <p><%= link_to "新規アイテムを登録", new_item_path, class: "btn btn-primary user_btn1" %></p>
-        
-        <div>
-          <p><%= link_to "現在掲載中のアイテムはこちら", current_user %></p>
+    <div class="col-md-6 col-md-offset-3">
+       <div>
+         <span><%= link_to "新規アイテムを登録", new_item_path, class: "btn btn-primary user_btn1" %></span>
+         <span class="user_padding2"><%= link_to "現在掲載中のアイテムはこちら", current_user %></span>
         </div>
-        
+        <div class="container">
+              <div class="user_padding1">
+                  <%= page_entries_info @borrowings %>
+              </div>
+              <div>
+                  <%= paginate @borrowings %>
+              </div>
+          </div>
           <% if @borrowings.any? %>
             <h3>借りているアイテム (個数: <%= @borrowings.count(:borrowed_item_id) %>)</h3>
             <ol class="items">
@@ -29,13 +35,13 @@
                       </div>
                     <% end %>
                   </p>
-                  <span class="title">タイトル: <%= link_to borrowing_item.title, item_path(borrowing_item.id) %></span></br>
-                  <span class="title">有効期間: <%= borrowing_item.start_day %> 〜 <%= borrowing_item.end_day %></span></br>
+                  <span>タイトル: <%= link_to borrowing_item.title, item_path(borrowing_item.id) %></span></br>
+                  <span>有効期間: <%= borrowing_item.start_day %> 〜 <%= borrowing_item.end_day %></span></br>
                   <%= link_to "予約中", item_path(borrowing_item.id), class: "btn btn-large btn-primary" %>
                   
                   <%= form_for(@borrowings.find_by(borrowed_item_id: item.borrowed_item_id),
                   html: { method: :delete }) do |f| %>
-                  <%= f.submit "予約をキャンセル", class: "btn" %>
+                  <%= f.submit "予約をキャンセル", class: "btn user_margin1" %>
                   <% end %>
                   
                   <hr/>

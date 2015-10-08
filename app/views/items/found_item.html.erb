@@ -65,22 +65,27 @@
                         <p>
                           <strong>Image:</strong>
                           <% if item.avatar? %>
-                            <div class="thumbnail">
+                            <div class="pull-left">
                               <%= image_tag item.avatar.thumb.url %>
                             </div>
                         　<% else %>
-                            <div class="thumbnail">
+                            <div class="pull-left">
                               <%= image_tag("noimage.gif") %>
                             </div>
                           <% end %>
                         </p>
-                        <span class="title">タイトル: <%= link_to item.title, item_path(item.id) %></span></br>
-                        <span class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></span></br>
-                        <%= link_to "借りたい", login_path, class: "btn btn-large btn-primary" %>
-                      <hr/>
+                        <div>
+                          
+                        </div class="media-body">
+                        <div class="title media-heading">タイトル: <%= link_to item.title, item_path(item.id) %></div>
+                        <div class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></div>
+                        <div class="user_title"><%= link_to "借りたい", login_path, class: "btn btn-large btn-primary" %></div>
                     </li>
+                    <hr/>
                 <% end %>
             </ul>
       <% end %>
     </div>
 </div>
+
+
