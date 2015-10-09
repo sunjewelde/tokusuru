@@ -199,6 +199,9 @@ span.picture {
   margin-top: 150px;
 }
 
+.user_margin3{
+  margin: 0 auto;
+}
 
 .user_btn1{
   margin-top: 20px;
@@ -272,6 +275,7 @@ span.picture {
   font-size: 19px;
 }
 
+
 .bg-info{
   background-color: rgb(85,85,85);
   color: #fff;
@@ -286,7 +290,8 @@ span.picture {
 }
 
 #content{
-  background-color: #f1f1f1;
+  // background-color: #f1f1f1;
+  background-color: #ececec;
 }
 
 .linkArea{
@@ -308,4 +313,8 @@ height: 70%;
   margin-top: 20px;
   margin-bottom: 30px;
   height: auto;
+}
+
+.user-bg-color{
+  background-color: #ececec;
 }
