@@ -24,12 +24,12 @@
                 <apan>少しだけ使いたいだけなので買うより借りたい。</span></br>
                 <span>ミニマリストを目指したい。</span></br>
                 <span>そんな方がモノを賢くシェアするサービスです。</span></br>
-        　　</p>
+            </p>
         </div>
         
     </div>
     
-    <div id="usage" class="user-bg-color">
+    <div id="usage" class="user-bg-color user_padding7">
          <div class="container">
              <h3 class="title center">ご利用方法</h3>
              <p class="user-words">
@@ -37,46 +37,64 @@
                  <span>登録されたモノが貸し出されると、モノの人気度と利用期間に応じてポイントを獲得。</span></br>
                  <span>借りたいモノがみつかれば、ポイントを利用して借りる。</span></br>
              </p>
-                  
-                      
-                              <%= image_tag("usage.png", class: "img-responsive user_margin3", alt: "Responsive image" ) %>
+                <%= image_tag("usage.png", class: "img-responsive user_margin3", alt: "Responsive image" ) %>
                           
-                      
-                 
-              
          </div>
     </div>
     
     
-    <div class="container-inner">   
-         <div class="container user-height">
+    <div class="container-inner bg-info "> 
+      <div class="user-height2 user_padding1">
+        <div class="center user_margin4">
+          <h3>TOKUSURUを使ってみる</h3>
+        </div>
+         <div class="container">
             <div class="row">
-    
                 <div class="col-lg-6 col-sm-6 user_category_list img-responsive ">
-                    <h3>モノを掲載</h3>
-            
-                        <div class="linkArea">
+                      <div class="linkArea2">
                             <div><%= link_to "貸したい", items_path, class: "user_bg_img1" %></div>
-                        </div>
+                      </div>
                 </div>
-                
                 <div class="col-lg-6 col-sm-6 user_category_list img-responsive">
-                    <h3>モノを探す</h3>
-                    
-                        <div class="linkArea">
+                        <div class="linkArea2">
                             <div><%= link_to "借りたい", items_find_borrowing_path, class: "user_bg_img2" %></div>
                         </div>
                 </div>
             </div>
-         </div>
+         </div> 
+      </div>
+    </div>   
          
-        <div id="category">
-            <%= render 'layouts/categorylist' %>
+       <div class="bg-info user-height1 user_padding1">
+         <h3 class="center user_margin4">ランキング</h3>
+         <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 user_category_list img-responsive ">
+                            <div class="linkArea2">
+                                <div><%= link_to "貸したい", items_path, class: "user_bg_img3" %></div>
+                            </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 user_category_list img-responsive">
+                            <div class="linkArea2">
+                                <div><%= link_to "借りたい", items_find_borrowing_path, class: "user_bg_img4" %></div>
+                            </div>
+                    </div>
+                </div>
+         </div>  
+       </div> 
+         
+
+         
+        <div id="category" class="user-color4">
+            <div class="center user_padding1">
+                <h3>アイテムカテゴリー</h3>
+            </div>
+            <%= render 'layouts/categorylist' %>  
         </div>
-    </div> 
+        
    
-    
 </div>
+
 
 
  <%= render 'layouts/footer' %>
