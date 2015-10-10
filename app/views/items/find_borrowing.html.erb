@@ -1,5 +1,8 @@
-<h1>借りたいアイテムを探す</h1>
-<div class="container">
+<div class="bg-info user_padding1 user_margin6">
+    <h1>モノを探す</h1>
+</div>
+
+<div class="container user_margin6">
     <div class = "row">
         <div class="col-md-6 col-md-offset-3 media-list">
             <%= search_form_for(@q, url: items_found_item_path, method: :get) do |f| %>
@@ -37,7 +40,14 @@
         
 </div>
 
-<%= render 'layouts/categorylist' %>
+<div id="category" class="user-color4">
+    <div class="center user_padding1">
+        <h3>アイテムカテゴリー</h3>
+    </div>
+    <%= render 'layouts/categorylist' %>  
+</div>
+
+<%#= render 'layouts/categorylist' %>
 
 <%= render 'layouts/footer' %>
 

@@ -1,63 +1,69 @@
-<h1>新規アイテム登録</h1>
-
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@item) do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
-
-      <%= f.label :タイトル %>
-      <%= f.text_field :title %>
-
-      <%= f.label :アイテムカテゴリー %>
-      <%#= f.text_field :category %>
-      <%= f.select :category, {"家電、カメラ、AV機器" => "c1",
-                               "パソコン・オフィス用品" => "c2", 
-                               "ホーム＆キッチン・ペット・DIY" => "c3", 
-                               "ヘルス＆ビューティー" => "c4", 
-                               "ベビー・おもちゃ・ホビー" => "c5", 
-                               "ファッション・バッグ・腕時計" => "c6", 
-                               "スポーツ＆アウトドア" => "c7", 
-                               "車＆バイク・産業・研究開発" => "c8" },
-                               :include_blank => true %>
-
-      <%= f.label :アイテム利用可能開始日 %>
-      <%= f.date_field :start_day %>
-
-      <%= f.label :アイテム利用終了日 %>
-      <%= f.date_field :end_day %>
-
-      <%= f.label :アイテム紹介 %>
-      <%= f.text_area :content %>
-      
-  <!-- 追加箇所 開始 -->
-      <div class="field">
-        <%# if f.avatar? %>
-          <!--<div class="thumbnail">-->
-            <%#= image_tag f.avatar.url %>
-          <!--</div>-->
-        <%# end %><br>
-        <%= f.label :アイテム画像 %><br>
-        <%= f.file_field :avatar %>
-        <%= f.hidden_field :avatar_cache %>
-      </div>
-      <div class="field">
-        <!-- 既存レコード(DBに保存されている)かつ、画像が存在する場合 -->
-        <%# if f.persisted? && @avatar.avatar? %>
-          <!--<label>-->
-            <%#= f.check_box :remove_avator %>
-          <!--  画像を削除-->
-          <!--</label>-->
-        <%# end %>
-      </div>
-  <!-- 追加箇所 終了 -->
-      
-      <%#= f.label :アイテム画像 %>
-      <%#= f.file_field :avatar %>
-      
-      <%#= form.file_field :avatars, multiple: true %>
-
-      <%= f.submit "アイテムを登録", class: "btn btn-large btn-primary" %>
-    <% end %>
+<div class="container-fluid">
+  <div class="bg-info user_padding1">
+    <h1>新規でモノを登録</h1>
+  </div>
+  
+  
+  <div class="row user_padding1">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for(@item) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+  
+        <%= f.label :タイトル %>
+        <%= f.text_field :title %>
+  
+        <%= f.label :アイテムカテゴリー %>
+        <%#= f.text_field :category %>
+        <%= f.select :category, {"家電、カメラ、AV機器" => "c1",
+                                 "パソコン・オフィス用品" => "c2", 
+                                 "ホーム＆キッチン・ペット・DIY" => "c3", 
+                                 "ヘルス＆ビューティー" => "c4", 
+                                 "ベビー・おもちゃ・ホビー" => "c5", 
+                                 "ファッション・バッグ・腕時計" => "c6", 
+                                 "スポーツ＆アウトドア" => "c7", 
+                                 "車＆バイク・産業・研究開発" => "c8" },
+                                 :include_blank => true %>
+  
+        <%= f.label :アイテム利用可能開始日 %>
+        <%= f.date_field :start_day %>
+  
+        <%= f.label :アイテム利用終了日 %>
+        <%= f.date_field :end_day %>
+  
+        <%= f.label :アイテム紹介 %>
+        <%= f.text_area :content %>
+        
+    <!-- 追加箇所 開始 -->
+        <div class="field">
+          <%# if f.avatar? %>
+            <!--<div class="thumbnail">-->
+              <%#= image_tag f.avatar.url %>
+            <!--</div>-->
+          <%# end %><br>
+          <%= f.label :アイテム画像 %><br>
+          <%= f.file_field :avatar %>
+          <%= f.hidden_field :avatar_cache %>
+        </div>
+        <div class="field">
+          <!-- 既存レコード(DBに保存されている)かつ、画像が存在する場合 -->
+          <%# if f.persisted? && @avatar.avatar? %>
+            <!--<label>-->
+              <%#= f.check_box :remove_avator %>
+            <!--  画像を削除-->
+            <!--</label>-->
+          <%# end %>
+        </div>
+    <!-- 追加箇所 終了 -->
+        
+        <%#= f.label :アイテム画像 %>
+        <%#= f.file_field :avatar %>
+        
+        <%#= form.file_field :avatars, multiple: true %>
+  
+        <%= f.submit "アイテムを登録", class: "btn btn-large btn-primary" %>
+      <% end %>
+    </div>
   </div>
 </div>
+
 

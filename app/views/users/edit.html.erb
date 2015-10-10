@@ -1,32 +1,39 @@
 <% provide(:title, "Edit user") %>
-<h1>ユーザー情報編集</h1>
-<div class="container">
-    <div class="row">
-    <div class="span6 offset3">
-        <%= form_for(@user) do |f| %>
-            <%= render 'shared/error_messages', object: f.object %>
-            
-              <%= f.label :name %>
-              <%= f.text_field :name %>
-
-              <%= f.label :email %>
-              <%= f.text_field :email %>
+<div class="container-fluid">
+    <div class="bg-info user_padding1">
+        <h1>ユーザーアカウント編集</h1>
+    </div>
+    
+    
+    <div class="container-inner user_padding2">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 media-list"">
+                <%= form_for(@user) do |f| %>
+                    <%= render 'shared/error_messages', object: f.object %>
+                    
+                      <%= f.label :name %>
+                      <%= f.text_field :name %>
         
-              <%= f.label :password %>
-              <%= f.password_field :password %>
+                      <%= f.label :email %>
+                      <%= f.text_field :email %>
+                
+                      <%= f.label :password %>
+                      <%= f.password_field :password %>
+                
+                      <%= f.label :password_confirmation, "Confirmation" %>
+                      <%= f.password_field :password_confirmation %>
         
-              <%= f.label :password_confirmation, "Confirmation" %>
-              <%= f.password_field :password_confirmation %>
-
-        <%= f.submit "変更を保存", class: "btn btn-large btn-primary" %>
-        <% end %>
-        
-        <div class="user_margin1">
-            <%= gravatar_for @user %>
-        </div>
-        <div class="user_margin1">
-            <a href="http://gravatar.com/emails">change</a>
+                <%= f.submit "変更を保存", class: "btn btn-large btn-primary" %>
+                <% end %>
+                
+                <div class="user_margin1">
+                    <%= gravatar_for @user %>
+                </div>
+                <div class="user_margin1">
+                    <a href="http://gravatar.com/emails">change</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-</div>
+

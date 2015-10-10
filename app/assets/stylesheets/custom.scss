@@ -350,7 +350,8 @@ span.picture {
 
 .user-footer {
   padding: 40px;
-  background-color: #1a1a1a;
+  // background-color: #1a1a1a;
+  background-color: rgb(34,34,34);
   color: #fff;
 }
 
@@ -459,4 +460,11 @@ height: 100%;
 
 .user-color5{
   background-color: #A2DED0;
+}
+
+.user_border2{
+  border-style: solid;
+  border-color: #999999;
+  padding: 10px;
+  background-color: #ffffff;
 }

@@ -1,33 +1,26 @@
-<h1>item_borrower_ranking</h1>
-
-<div class="container">
-    <div>
-        <%#= page_entries_info @items %>
-    </div>
-    <div>
-        <%#= paginate @items %>
-    </div>
+<div class="bg-info user_padding1">
+    <h1>借りたいモノランキング</h1>
 </div>
-        
-        
-<div class="row">
-      <div>
 
+<div class="container-inner user_padding2 user-bg-color">
+    <div class="row">
+      <div>
+    
            <ul class="col-md-6 col-md-offset-3 media-list">
               <% item_name1 = "z1aw3" %>
               <% i = 1 %>
               <% @ranking.each do | item | %>
                     <% item_name0 = item.title %>
                     <% if item_name0 != item_name1 %>
-                          <li class="media">
+                          <li class="media user_border2">
                              <p>
-                              <strong>ランキング: <%= i %></strong>
+                              <strong><%= i %> 位</strong>
                                 <% if item.avatar? %>
-                                  <div class="thumbnail">
+                                  <div class="center">
                                     <%= image_tag item.avatar.thumb.url %>
                                   </div>
                                 <% else %>
-                                  <div class="thumbnail">
+                                  <div class="center">
                                     <%= image_tag("noimage.gif" ,  alt: "no-image") %>
                                   </div>
                                 <% end %>
@@ -45,7 +38,6 @@
                                         <% end %>
             
                                 </p>
-                          <hr/>
                          </li>
                       <% item_name1 = item.title %>
                       <% i += 1 %>
@@ -54,6 +46,8 @@
                    <% end %>
               <% end %>
           </ul>
-
+    
       </div>
+    </div>   
 </div>
+        

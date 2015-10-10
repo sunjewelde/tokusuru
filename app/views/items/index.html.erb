@@ -22,9 +22,9 @@
     
     
     
-    <div class="container-inner user_padding2 user-color3 user_margin7">
+    <div class="container-inner user_padding2 user-bg-color user_margin7">
       <div class="center">
-        <h3>貸したいアイテム一覧</h3>
+        <h3>モノ一覧</h3>
         <div>
           <!--<div class="col-xs-12 col-sm-6 col-md-8">-->
           <%= page_entries_info @items %>
@@ -45,7 +45,7 @@
                               <!--<div class="media">-->
                                       <% @items.each do | item | %>
                                         <% if current_user.borrowing?(item) %>
-                                          <li  class="media">
+                                          <li  class="media user_border2">
                                             <p>
                                               <!--<strong>Image:</strong>-->
                                               <% if item.avatar? %>
@@ -63,10 +63,10 @@
                                             <div><strong class="user_title">予約中</strong></div>
                                             </div>
                                           </li>
-                                          <hr/>
+                                          
                                       
                                       <% elsif current_user.items.include?(item) %>
-                                        <li class="media">
+                                        <li class="media user_border2">
                                           <p>
                                             <!--<strong>Image:</strong>-->
                                               <% if item.avatar? %>
@@ -85,10 +85,10 @@
                                           <div><strong class="user_title">自分のアイテム</strong></div>
                                           </div>
                                         </li>
-                                        <hr/>
+                                        
                                         
                                       <% else %>
-                                        <li class="media">
+                                        <li class="media user_border2">
                                            <p>
                                             <!--<strong>Image:</strong>-->
                                               <% if item.avatar? %>
@@ -107,7 +107,7 @@
                                           <div><%= link_to "借りたい", item_path(item.id), class: "btn btn-large btn-primary" %></div>
                                           </div>
                                        </li>
-                                       <hr/>
+                                       
                                       <% end %>
                                   <% end %>
                               <!--</div> -->
@@ -117,7 +117,7 @@
                 <% else %>
                          <ul class="col-md-6 col-md-offset-3 media-list">
                             <% @items.each do | item | %>
-                                  <li class="media">
+                                  <li class="media user_border2">
                                      <p>
                                       <!--<strong>Image:</strong>-->
                                         <% if item.avatar? %>
@@ -137,7 +137,7 @@
                                     </div>
                                     
                                  </li>
-                                 <hr/>
+                            
                             <% end %>
                             
                         </ul>

@@ -16,38 +16,46 @@ class ItemsController < ApplicationController
   require 'date'
   def found_item
     if params[:q][:start_day] != nil and params[:q][:end_day] != nil and params[:q][:category] != nil and  params[:q][:title_cont] != nil
-      title = params[:q][:title_cont]
-      category = params[:q][:category]
-      start_day_s = params[:q][:start_day]
-        if start_day_s != ""
-        start_day = Date.parse(start_day_s)
+        title = params[:q][:title_cont]
+        category = params[:q][:category]
+        start_day_s = params[:q][:start_day]
+          if start_day_s != ""
+          start_day = Date.parse(start_day_s)
+          end
+        end_day_s = params[:q][:end_day]
+          if end_day_s != ""
+          end_day = Date.parse(end_day_s)
+          end
+        
+        if start_day_s != "" && end_day_s != "" 
+           day_validate = end_day - start_day
         end
-      end_day_s = params[:q][:end_day]
-        if end_day_s != ""
-        end_day = Date.parse(end_day_s)
+        
+        day = 0
+        if category != "" && start_day_s == "" && end_day_s == ""
+          @i = Item.where(:category => category )
+          @items = @i.search(:title_cont => title).result.page(params[:page])
+        elsif category == "" && start_day_s != "" && end_day_s != "" && day_validate > day
+          @items = Item.search(:start_day_lteq => start_day, :end_day_gteq => end_day).result.page(params[:page])
+          # @items_start = Item.search(:start_day_lteq => start_day).result
+          # @items = @items_start.search(:end_day_gteq => end_day).result.page(params[:page])
+        elsif category != "" && start_day_s != "" && end_day_s != "" && day_validate>=day
+          # @items = Item.search(:category => category, :start_day_lteq => start_day, :end_day_gteq => end_day).result.page(params[:page])
+          @i = Item.where(:category => category )
+          @items_start = @i.search(:start_day_lteq => start_day).result
+          @items = @items_start.search(:end_day_gteq => end_day).result.page(params[:page])
+        elsif start_day_s != "" && end_day_s != ""  && day_validate < day
+          flash[:danger] = "有効な利用期間が設定されていません。"
+          redirect_to items_find_borrowing_path
+        else
+          @items = Item.search(:title_cont => title).result.page(params[:page])
         end
-      
-      if category != "" && start_day_s == "" && end_day_s == ""
-        @i = Item.where(:category => category )
-        @items = @i.search(:title_cont => title).result.page(params[:page])
-      elsif category == "" && start_day_s != "" && end_day_s != ""
-        @items = Item.search(:start_day_lteq => start_day, :end_day_gteq => end_day).result.page(params[:page])
-        # @items_start = Item.search(:start_day_lteq => start_day).result
-        # @items = @items_start.search(:end_day_gteq => end_day).result.page(params[:page])
-      elsif category != "" && start_day_s != "" && end_day_s != ""
-        # @items = Item.search(:category => category, :start_day_lteq => start_day, :end_day_gteq => end_day).result.page(params[:page])
-        @i = Item.where(:category => category )
-        @items_start = @i.search(:start_day_lteq => start_day).result
-        @items = @items_start.search(:end_day_gteq => end_day).result.page(params[:page])
-      else
-        @items = Item.search(:title_cont => title).result.page(params[:page])
-      end
     else
-      # @q = Item.ransack(params[:q])
-      # @items = @q.result(distinct: true)
-      # @items = @q.result(distinct: true).page(params[:page])
-      title = params[:q][:title_cont]
-      @items = Item.search(:title_cont => title).result.page(params[:page])
+        # @q = Item.ransack(params[:q])
+        # @items = @q.result(distinct: true)
+        # @items = @q.result(distinct: true).page(params[:page])
+        title = params[:q][:title_cont]
+        @items = Item.search(:title_cont => title).result.page(params[:page])
     end
     
   end
