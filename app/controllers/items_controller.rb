@@ -72,12 +72,26 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = current_user.items.build(item_params)
-    if @item.save
-      flash[:success] = "アイテムは保存されました。"
-      redirect_to current_user
+    if params[:item][:start_day] != "" && params[:item][:end_day] != ""
+      start_day_s = params[:item][:start_day]
+      start_day = Date.parse(start_day_s)
+      end_day_s = params[:item][:end_day]
+      end_day = Date.parse(end_day_s)
+          if end_day - start_day > 0
+              @item = current_user.items.build(item_params)
+              if @item.save
+                flash[:success] = "アイテムは保存されました。"
+                redirect_to current_user
+              else
+                render 'top_pages/home'
+              end
+          else
+             flash[:danger] = "有効な利用期間が設定されていません。"
+             redirect_to new_item_path
+          end
     else
-      render 'top_pages/home'
+      flash[:danger] = "有効な利用期間が設定されていません。"
+      redirect_to new_item_path
     end
   end
   
