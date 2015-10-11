@@ -83,7 +83,9 @@ class ItemsController < ApplicationController
                 flash[:success] = "アイテムは保存されました。"
                 redirect_to current_user
               else
-                render 'top_pages/home'
+                flash[:danger] = "タイトルに入力エラーがあります。"
+                redirect_to new_item_path
+                # render 'top_pages/home'
               end
           else
              flash[:danger] = "有効な利用期間が設定されていません。"
