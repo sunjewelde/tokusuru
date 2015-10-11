@@ -8,6 +8,10 @@ class UsersController < ApplicationController
     # @items = @user.items
      @items = @user.items.page(params[:page])
      @borrowings = @user.borrowed_items
+    # @borrowed_items = Borrowing.all
+     @borrowed_items = Borrowing.group(:borrowed_item_id).order('count_borrowed_item_id desc').count(:borrowed_item_id).keys
+      # binding.pry
+     @items
   end
 
   
