@@ -1,42 +1,57 @@
-<div class="container">
-  <div class="row">
-    <div>
-      <section class="user_info">
-        <h1>
-          <%= gravatar_for @user %>
-          <%= @user.name %>
-        </h1>
-      </section>
+<div class="container-fluid">
+    <div class="">
+      <div class="row">
+          <div class="user_info">
+            <h1>
+              <%= gravatar_for @user %>
+              <%= @user.name %>
+            </h1>
+          </div>
     </div>
     
     
     <div class="col-md-6 col-md-offset-3">
-      <% if logged_in? %>
-          <div>
-            <span><%= link_to "新規アイテムを登録", new_item_path, class: "btn btn-primary user_btn1" %></span>
-            <span class="user_padding2"><%= link_to "現在借りているアイテムはこちら", users_show_borrowing_path %></span>
-          </div>
-          <div class="container">
-              <div class="user_padding1">
-                  <%= page_entries_info @items %>
-              </div>
+        <% if logged_in? %>
+            <div class="center">
+              <div><%= link_to "新規アイテムを登録", new_item_path, class: "btn btn-primary user_btn1" %></div>
+              <div class="user_margin6 user_padding8"><%= link_to "現在借りているアイテムはこちら", users_show_borrowing_path %></div>
+            </div>
+            <div class="container-inner center">
               <div>
-                  <%= paginate @items %>
+                <h3>登録されているモノ</h3>
               </div>
-          </div>
-          <% if @user.items.any? %>
-            <h3>掲載アイテム (個数: <%= @user.items.count %>)</h3>
-            <ul class="items">
-              <%= render @items %>
-            </ul>
-          <% end %>
-      <% else %>
-          <%= link_to "こちらからログインして下さい。", login_path %>
-      <% end %>
-
+                <div class="#">
+                    <%= page_entries_info @items %>
+                </div>
+                <div>
+                    <%= paginate @items %>
+                </div>
+            </div>
+            
+        <% else %>
+            <%= link_to "こちらからログインして下さい。", login_path %>
+        <% end %>
+        
     </div>
     
+    <div class="container-inner user_padding2 user-bg-color">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+              <% if @user.items.any? && logged_in? %>
+                  <div class="">
+                    <ul class="user_margin8">
+                      <%= render @items %>
+                    </ul>
+                  </div>
+              <% else %>
+              <% end %>
+            </div>
+        </div>
+    </div>
 
+    
+    
+        
 
-  </div>
 </div>
+

@@ -1,61 +1,71 @@
-<div class="container">
-  <div class="row">
-    <div>
-      <section class="user_info">
-        <h1>
-          <%= gravatar_for @user %>
-          <%= @user.name %>
-        </h1>
-      </section>
+<div class="container-fluid">
+    <div class="">
+          <div class="user_info">
+            <h1>
+              <%= gravatar_for @user %>
+              <%= @user.name %>
+            </h1>
+          </div>
     </div>
     
-    <div class="col-md-6 col-md-offset-3">
-       <div>
-         <span><%= link_to "新規アイテムを登録", new_item_path, class: "btn btn-primary user_btn1" %></span>
-         <span class="user_padding2"><%= link_to "現在掲載中のアイテムはこちら", current_user %></span>
-        </div>
-        <div class="container">
-              <div class="user_padding1">
-                  <%= page_entries_info @borrowings %>
-              </div>
-              <div>
-                  <%= paginate @borrowings %>
-              </div>
+    <div class="container-inner  user-bg-color">
+      <div class="row">
+          <div class="center">
+           <div><%= link_to "新規アイテムを登録", new_item_path, class: "btn btn-primary user_btn1" %></div>
+           <div class="user_margin6 user_padding8"><%= link_to "現在掲載中のアイテムはこちら", current_user %></div>
           </div>
-          <% if @borrowings.any? %>
-            <h3>借りているアイテム (個数: <%= @borrowings.count(:borrowed_item_id) %>)</h3>
-            <ol class="items">
-              <% @borrowings.each do | item | %>
-              <% if item.borrowed_item_id != nil %>
-                  <% borrowing_item = Item.find(item.borrowed_item_id) %>
-                  <p>
-                    <% if borrowing_item.avatar? %>
-                      <div class="img-wrap">
-                        <%= image_tag borrowing_item.avatar.thumb.url %>
-                      </div>
-                    <% end %>
-                  </p>
-                  <span>タイトル: <%= link_to borrowing_item.title, item_path(borrowing_item.id) %></span></br>
-                  <span>有効期間: <%= borrowing_item.start_day %> 〜 <%= borrowing_item.end_day %></span></br>
-                  <%= link_to "予約中", item_path(borrowing_item.id), class: "btn btn-large btn-primary" %>
+            <div class="center">
+                <h3>借りているモノ</h3>
+                <div class="">
+                    <%= page_entries_info @borrowings %>
+                </div>
+                <div>
+                    <%= paginate @borrowings %>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-md-offset-3 user_padding2">
+                <% if @borrowings.any? %>
                   
-                  <%= form_for(@borrowings.find_by(borrowed_item_id: item.borrowed_item_id),
-                  html: { method: :delete }) do |f| %>
-                  <%= f.submit "予約をキャンセル", class: "btn user_margin1" %>
+                  <% @borrowings.each do | item | %>
+                      <% if item.borrowed_item_id != nil %>
+                          <div class="media user_border2">
+                            <% borrowing_item = Item.find(item.borrowed_item_id) %>
+                           
+                              <% if borrowing_item.avatar? %>
+                                <div class="pull-left">
+                                  <%= image_tag borrowing_item.avatar.thumb.url %>
+                                </div>
+                              <% else %>
+                                <div class="pull-left">
+                                  <%= image_tag("noimage.gif" ,  alt: "no-image") %>
+                                </div>
+                              <% end %>
+                              <div class="media-body">
+                                  <div>タイトル: <%= link_to borrowing_item.title, item_path(borrowing_item.id) %></div>
+                                  <div>有効期間: <%= borrowing_item.start_day %> 〜 <%= borrowing_item.end_day %></div>
+                                  <div class="user_margin10">
+                                    <%= link_to "詳細", item_path(borrowing_item.id), class: "btn btn-large btn-primary" %>
+                                  </div>
+                                  <div class="user_margin10">
+                                    <%= form_for(@borrowings.find_by(borrowed_item_id: item.borrowed_item_id),
+                                    html: { method: :delete }) do |f| %>
+                                    <%= f.submit "予約をキャンセル", class: "btn btn-danger" %>
+                                    <% end %>
+                                  </div>
+                              </div>
+                          </div>
+                      <% else %>
+                      <%# 何も表示しない %>
+                      <% end %>
                   <% end %>
-                  
-                  <hr/>
-              <% else %>
-              <%# 何も表示しない %>
-              <% end %>
-            </ol>
-          <% end %>
-       <% end %>
-       
-
-       
-    </div>
-  </div>
+                <% end %>
+          </div>
+      </div>
+        
+        
+   </div>
+   
+   
 </div>
-
 

@@ -60,7 +60,7 @@
                                             </p>
                                             <div class="media-body">
                                             <div class="title media-heading">タイトル: <%= link_to item.title, item_path(item.id) %></div>
-                                            <div><strong class="user_title">予約中</strong></div>
+                                            <div class="user_margin10"><strong class="user_title">予約中</strong></div>
                                             </div>
                                           </li>
                                           
@@ -82,7 +82,7 @@
                                           <div class="media-body">
                                           <div class="title media-heading">タイトル: <%= link_to item.title, item_path(item.id) %></div>
                                           <div class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></div>
-                                          <div><strong class="user_title">自分のアイテム</strong></div>
+                                          <div class="user_margin10"><strong class="user_title">自分のアイテム</strong></div>
                                           </div>
                                         </li>
                                         
@@ -104,7 +104,7 @@
                                           <div class="media-body">
                                           <div class="title media-heading">タイトル: <%= link_to item.title, item_path(item.id) %></div>
                                           <div class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></div>
-                                          <div><%= link_to "借りたい", item_path(item.id), class: "btn btn-large btn-primary" %></div>
+                                          <div class="user_margin10"><%= link_to "借りたい", item_path(item.id), class: "btn btn-large btn-primary" %></div>
                                           </div>
                                        </li>
                                        

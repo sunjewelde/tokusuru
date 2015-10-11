@@ -1,29 +1,36 @@
 <!--<div class="container">-->
   <div>
-    <li id="item-<%= item.id %>">
-      <div class="media">
+    <li id="item-<%= item.id %>" class="user_border3 media user_margin9">
+      
                 <% if item.avatar? %>
-                  <div>
+                  <div class="pull-left">
                     <%= image_tag item.avatar.thumb.url %>
                   </div>
                 <% else %>
-                  <div>
+                  <div class="pull-left">
                     <%= image_tag("noimage.gif" ,  alt: "no-image") %>
                   </div>
                 <% end %>
-      </div>
-              
-      <div>タイトル: <%= item.title %></div>
-      <div>有効期間: <%= item.start_day %> 〜 <%= item.end_day %></div>
-      <div class="">
-        <%#= time_ago_in_words(item.created_at) %>
-        <% if current_user == item.user %>
-          <%= link_to "編集", edit_item_path(item)%> | 
-          <%= link_to "削除", item, method: :delete,
-                                           data: { confirm: "本当に削除してよろしいですか?" } %>
-        <% end %>
-      </div>
+      
+      <div class="media-body">
+          <div>タイトル: <%= item.title %></div>
+          <div>有効期間: <%= item.start_day %> 〜 <%= item.end_day %></div>
+          <div class="">
+          <%#= time_ago_in_words(item.created_at) %>
+          <% if current_user == item.user %>
+              <div class="user_margin10">
+                <%= link_to "編集", edit_item_path(item), class: "btn btn-primary" %>
+              </div>
+              <div class="user_margin10">
+                <%= link_to "削除", item, method: :delete,
+                                                 data: { confirm: "本当に削除してよろしいですか?" }, class: "btn btn-danger" %>
+              </div>
+          <% end %>
+          </div>
+      </div>        
+      
     </li>
   </div>
 
 <!--</div>-->
+

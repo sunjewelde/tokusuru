@@ -204,6 +204,7 @@ span.picture {
 }
 
 .user_margin4{
+  margin-top: 0;
   margin-bottom: 20px;
 }
 
@@ -219,7 +220,17 @@ span.picture {
   margin-top: 30px;
 }
 
+.user_margin8{
+  margin: 0;
+}
 
+.user_margin9{
+  margin-bottom: 10px;
+}
+
+.user_margin10{
+  margin-top: 5px;
+}
 
 .user_btn1{
   margin-top: 20px;
@@ -267,6 +278,10 @@ span.picture {
 
 .user_padding9{
   padding-top: -20px;
+}
+
+.user_padding10{
+  padding: 30px 30px 60px 30px;
 }
 
 .user_bg_img1{
@@ -466,5 +481,12 @@ height: 100%;
   border-style: solid;
   border-color: #999999;
   padding: 10px;
+  background-color: #ffffff;
+}
+
+.user_border3{
+  border-style: solid;
+  border-color: #999999;
+  padding: 0 10px 10px 10px;
   background-color: #ffffff;
 }

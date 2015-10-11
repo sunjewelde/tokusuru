@@ -1,125 +1,127 @@
-
-<h1>item_category</h1>
-<h2><%= @category %></h2>
-
-<div class="container">
-  <div class="row">
-      <div class="col-xs-12 col-sm-6 col-md-8">
-          <%= page_entries_info @items %>
-      </div>
-      <div class="col-xs-6 col-md-4">
-          <%= paginate @items %>
-      </div>
-  </div>
- 
-
-    <div class="row">
-          <div>
-            <% if logged_in? %>
-                    <ul class="col-md-6 col-md-offset-3 media-list">
-                    
-                          <!--<div class="media">-->
-                                  <% @items.each do | item | %>
-                                    <% if current_user.borrowing?(item) %>
-                                      <li  class="media">
-                                        <p>
-                                          <!--<strong>Image:</strong>-->
-                                          <% if item.avatar? %>
-                                            <div class="pull-left">
-                                              <%= link_to image_tag(item.avatar.thumb.url), item_path(item.id) %>
-                                            </div>
-                                          <% else %>
-                                            <div class="pull-left">
-                                              <%= link_to image_tag("noimage.gif",  alt: "no-image"), item_path(item.id) %>
-                                            </div>
-                                          <% end %>
-                                        </p>
-                                        <div class="media-body">
-                                        <div class="title media-heading">タイトル: <%= link_to item.title, item_path(item.id) %></div>
-                                        <div><strong class="user_title">予約中</strong></div>
-                                        </div>
-                                      </li>
-                                      <hr/>
-                                  
-                                  <% elsif current_user.items.include?(item) %>
-                                    <li class="media">
-                                      <p>
-                                        <!--<strong>Image:</strong>-->
-                                          <% if item.avatar? %>
-                                            <div class="pull-left">
-                                              <%= link_to image_tag(item.avatar.thumb.url), item_path(item.id) %>
-                                            </div>
-                                          <% else %>
-                                            <div class="pull-left">
-                                              <%= link_to image_tag("noimage.gif",  alt: "no-image"), item_path(item.id) %>
-                                            </div>
-                                          <% end %>
-                                      </p>
-                                      <div class="media-body">
-                                      <div class="title media-heading">タイトル: <%= link_to item.title, item_path(item.id) %></div>
-                                      <div class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></div>
-                                      <div><strong class="user_title">自分のアイテム</strong></div>
-                                      </div>
-                                    </li>
-                                    <hr/>
-                                    
-                                  <% else %>
-                                    <li class="media">
-                                       <p>
-                                        <!--<strong>Image:</strong>-->
-                                          <% if item.avatar? %>
-                                            <div class="pull-left">
-                                              <%= link_to image_tag(item.avatar.thumb.url), item_path(item.id) %>
-                                            </div>
-                                          <% else %>
-                                            <div class="pull-left">
-                                              <%= link_to image_tag("noimage.gif",  alt: "no-image"), item_path(item.id) %>
-                                            </div>
-                                          <% end %>
-                                      </p>
-                                      <div class="media-body">
-                                      <div class="title media-heading">タイトル: <%= link_to item.title, item_path(item.id) %></div>
-                                      <div class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></div>
-                                      <div><%= link_to "借りたい", item_path(item.id), class: "btn btn-large btn-primary" %></div>
-                                      </div>
-                                   </li>
-                                   <hr/>
-                                  <% end %>
-                              <% end %>
-                          <!--</div> -->
-
-                    </ul>
-    
-            <% else %>
-                     <ul class="col-md-6 col-md-offset-3 media-list">
-                        <% @items.each do | item | %>
-                              <li class="media">
-                                 <p>
-                                  <!--<strong>Image:</strong>-->
-                                    <% if item.avatar? %>
-                                      <div class="pull-left">
-                                        <%= link_to image_tag(item.avatar.thumb.url), item_path(item.id) %>
-                                      </div>
-                                    <% else %>
-                                      <div class="pull-left">
-                                          <%= link_to image_tag("noimage.gif",  alt: "no-image"), item_path(item.id) %>
-                                      </div>
-                                    <% end %>
-                                </p>
-                                <div class="media-body">
-                                  <div class="title media-heading">タイトル: <%= link_to item.title, item_path(item.id) %></div>
-                                  <div class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></div>
-                                  <div><%= link_to "借りたい", login_path, class: "btn btn-large btn-primary" %></div>
-                                </div>
-                                
-                             </li>
-                             <hr/>
-                        <% end %>
-                        
-                    </ul>
-    
-            <% end %>
-          </div>
+<div class="container-fluid">
+    <div class="bg-info user_padding1">
+      <h1><%= @category %></h1>
     </div>
     
+    <div class="container-inner user_padding2 user-bg-color">
+          <div class="center user_padding8">
+              <%= page_entries_info @items %>
+          </div>
+          <div class="center user_padding8">
+              <%= paginate @items %>
+          </div>
+     
+     
+    
+        <div class="row">
+              <div>
+                <% if logged_in? %>
+                        <ul class="col-md-6 col-md-offset-3 media-list">
+                        
+                              <!--<div class="media">-->
+                                      <% @items.each do | item | %>
+                                        <% if current_user.borrowing?(item) %>
+                                          <li  class="media user_border2">
+                                            <p>
+                                              <!--<strong>Image:</strong>-->
+                                              <% if item.avatar? %>
+                                                <div class="pull-left">
+                                                  <%= link_to image_tag(item.avatar.thumb.url), item_path(item.id) %>
+                                                </div>
+                                              <% else %>
+                                                <div class="pull-left">
+                                                  <%= link_to image_tag("noimage.gif",  alt: "no-image"), item_path(item.id) %>
+                                                </div>
+                                              <% end %>
+                                            </p>
+                                            <div class="media-body">
+                                            <div class="title media-heading">タイトル: <%= link_to item.title, item_path(item.id) %></div>
+                                            <div class="user_margin10"><strong class="user_title">予約中</strong></div>
+                                            </div>
+                                          </li>
+                                    
+                                      
+                                      <% elsif current_user.items.include?(item) %>
+                                        <li class="media user_border2">
+                                          <p>
+                                            <!--<strong>Image:</strong>-->
+                                              <% if item.avatar? %>
+                                                <div class="pull-left">
+                                                  <%= link_to image_tag(item.avatar.thumb.url), item_path(item.id) %>
+                                                </div>
+                                              <% else %>
+                                                <div class="pull-left">
+                                                  <%= link_to image_tag("noimage.gif",  alt: "no-image"), item_path(item.id) %>
+                                                </div>
+                                              <% end %>
+                                          </p>
+                                          <div class="media-body">
+                                          <div class="title media-heading">タイトル: <%= link_to item.title, item_path(item.id) %></div>
+                                          <div class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></div>
+                                          <div class="user_margin10"><strong class="user_title">自分のアイテム</strong></div>
+                                          </div>
+                                        </li>
+                                        
+                                        
+                                      <% else %>
+                                        <li class="media user_border2">
+                                           <p>
+                                            <!--<strong>Image:</strong>-->
+                                              <% if item.avatar? %>
+                                                <div class="pull-left">
+                                                  <%= link_to image_tag(item.avatar.thumb.url), item_path(item.id) %>
+                                                </div>
+                                              <% else %>
+                                                <div class="pull-left">
+                                                  <%= link_to image_tag("noimage.gif",  alt: "no-image"), item_path(item.id) %>
+                                                </div>
+                                              <% end %>
+                                          </p>
+                                          <div class="media-body">
+                                          <div class="title media-heading">タイトル: <%= link_to item.title, item_path(item.id) %></div>
+                                          <div class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></div>
+                                          <div class="user_margin10"><%= link_to "借りたい", item_path(item.id), class: "btn btn-large btn-primary" %></div>
+                                          </div>
+                                       </li>
+                                    
+                                      <% end %>
+                                  <% end %>
+                              <!--</div> -->
+    
+                        </ul>
+        
+                <% else %>
+                         <ul class="col-md-6 col-md-offset-3 media-list">
+                            <% @items.each do | item | %>
+                                  <li class="media user_border2">
+                                     <p>
+                                      <!--<strong>Image:</strong>-->
+                                        <% if item.avatar? %>
+                                          <div class="pull-left">
+                                            <%= link_to image_tag(item.avatar.thumb.url), item_path(item.id) %>
+                                          </div>
+                                        <% else %>
+                                          <div class="pull-left">
+                                              <%= link_to image_tag("noimage.gif",  alt: "no-image"), item_path(item.id) %>
+                                          </div>
+                                        <% end %>
+                                    </p>
+                                    <div class="media-body">
+                                      <div class="title media-heading">タイトル: <%= link_to item.title, item_path(item.id) %></div>
+                                      <div class="title">有効期間: <%= item.start_day %> 〜 <%= item.end_day %></div>
+                                      <div class="user_margin10"><%= link_to "借りたい", login_path, class: "btn btn-large btn-primary" %></div>
+                                    </div>
+                                    
+                                 </li>
+                                
+                            <% end %>
+                            
+                        </ul>
+        
+                <% end %>
+              </div>
+        </div>
+        
+    </div>
 </div>
+
